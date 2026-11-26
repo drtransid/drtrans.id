@@ -1,0 +1,68 @@
+---
+import Icon from '@/components/ui/Icon.astro';
+import { tour } from '@/config/home';
+import { siteConfig } from '@/config/site';
+
+const { whatsapp } = siteConfig.business;
+const tourHref = (name: string) =>
+  `${whatsapp.split('?')[0]}?text=${encodeURIComponent(`Halo DRTRANS.ID, saya ingin info paket wisata ${name}.`)}`;
+---
+
+<section id="wisata" class="shell mt-28 sm:mt-36" aria-labelledby="tour-title">
+  <div class="relative overflow-hidden rounded-[2rem] bg-night px-6 py-14 text-night-ink sm:px-12 sm:py-20 lg:px-16">
+    <div class="tour-glow" aria-hidden="true"></div>
+    <div class="relative grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+      <div class="reveal">
+        <p class="eyebrow text-night-muted">{tour.eyebrow}</p>
+        <h2 id="tour-title" class="mt-4 text-section">
+          {tour.title}
+        </h2>
+        <p class="mt-5 text-lead text-night-muted">{tour.text}</p>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {tour.destinations.map((place) => (
+          <li class="reveal">
+            <a
+              class="tour-card group flex h-full flex-col rounded-panel border border-white/10 bg-white/[0.04] p-5"
+              href={tourHref(place.name)}
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="flex items-center justify-between gap-3">
+                <span class="flex items-center gap-2 text-title">
+                  <Icon name="plane" class="size-4.5 text-accent" />
+                  {place.name}
+                </span>
+                <Icon name="arrow-up-right" class="size-4 text-night-muted transition-colors group-hover:text-accent" />
+              </span>
+              <span class="mt-3 text-sm text-night-muted">{place.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tour-glow {
+    position: absolute;
+    inset: auto -15% -40% auto;
+    width: 36rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 35%, transparent), transparent);
+    pointer-events: none;
+  }
+
+  .tour-card {
+    transition:
+      border-color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .tour-card:hover {
+    border-color: color-mix(in oklab, var(--accent) 60%, transparent);
+    background: rgb(255 255 255 / 0.07);
+  }
+</style>

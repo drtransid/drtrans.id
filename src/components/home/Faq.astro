@@ -1,0 +1,37 @@
+---
+import Icon from '@/components/ui/Icon.astro';
+import SectionHead from '@/components/ui/SectionHead.astro';
+import { faq } from '@/config/home';
+---
+
+<section id="faq" class="shell mt-28 sm:mt-36" aria-labelledby="faq-title">
+  <div class="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+    <SectionHead id="faq-title" eyebrow={faq.eyebrow} title={faq.title} />
+    <div class="border-t border-line">
+      {faq.items.map((item) => (
+        <details class="faq-item group border-b border-line" name="faq">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-6 text-lg font-medium">
+            {item.question}
+            <Icon name="chevron-down" class="faq-chevron mt-1 size-5 text-muted" />
+          </summary>
+          <p class="-mt-1 pb-6 text-body">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    transition: transform 240ms var(--ease-out-expo);
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-ink);
+  }
+</style>

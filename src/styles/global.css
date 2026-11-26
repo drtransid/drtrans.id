@@ -72,6 +72,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-accent-ink: var(--accent-ink);
   --color-on-accent: var(--on-accent);
   --color-inverse: var(--inverse);
   --color-on-inverse: var(--on-inverse);
@@ -101,24 +102,25 @@
 }
 
 :root {
-  --canvas: #fafaf7;
+  --canvas: #fcfafb;
   --surface: #ffffff;
-  --sunken: #f2f2ed;
-  --line: #e6e5df;
-  --line-strong: #d3d2ca;
-  --ink: #121211;
-  --body: #3b3b38;
-  --muted: #6a6964;
-  --accent: #d4f84a;
-  --accent-strong: #c3ec2c;
-  --on-accent: #121211;
-  --inverse: #121211;
-  --on-inverse: #fafaf7;
-  --night: #121211;
-  --night-ink: #f4f3ee;
-  --night-muted: #a9a8a1;
-  --shadow-card: 0 1px 2px rgb(18 18 17 / 0.05), 0 12px 32px -12px rgb(18 18 17 / 0.16);
-  --shadow-shot: 0 2px 6px rgb(18 18 17 / 0.06), 0 30px 60px -24px rgb(18 18 17 / 0.3);
+  --sunken: #f8eef3;
+  --line: #efe3e9;
+  --line-strong: #e0ccd7;
+  --ink: #0b0b0c;
+  --body: #2f2b2d;
+  --muted: #6b6368;
+  --accent: #ff3e8f;
+  --accent-strong: #ff1f7a;
+  --accent-ink: #d6005f;
+  --on-accent: #0b0b0c;
+  --inverse: #0b0b0c;
+  --on-inverse: #ffffff;
+  --night: #0b0b0c;
+  --night-ink: #fff3f8;
+  --night-muted: #b8aab2;
+  --shadow-card: 0 1px 2px rgb(11 11 12 / 0.05), 0 12px 32px -12px rgb(11 11 12 / 0.16);
+  --shadow-shot: 0 2px 6px rgb(11 11 12 / 0.06), 0 30px 60px -24px rgb(11 11 12 / 0.3);
   --header-h: 4.5rem;
   --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
   --measure: 80rem;
@@ -126,17 +128,18 @@
 }
 
 :root.dark {
-  --canvas: #0d0d0c;
-  --surface: #161615;
-  --sunken: #1c1c1a;
-  --line: #2a2a27;
-  --line-strong: #3a3a36;
-  --ink: #f4f3ee;
-  --body: #cfcec7;
-  --muted: #9d9c95;
-  --inverse: #f4f3ee;
-  --on-inverse: #121211;
-  --night: #171716;
+  --canvas: #0a0a0b;
+  --surface: #141315;
+  --sunken: #1c1a1c;
+  --line: #2a2629;
+  --line-strong: #3b3439;
+  --ink: #fbf3f7;
+  --body: #d8ccd3;
+  --muted: #a3969e;
+  --accent-ink: #ff5c9f;
+  --inverse: #ff3e8f;
+  --on-inverse: #0b0b0c;
+  --night: #161416;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -12px rgb(0 0 0 / 0.6);
   --shadow-shot: 0 2px 6px rgb(0 0 0 / 0.3), 0 30px 60px -24px rgb(0 0 0 / 0.7);
   color-scheme: dark;

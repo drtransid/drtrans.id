@@ -3,14 +3,13 @@ import Icon from '@/components/ui/Icon.astro';
 import Logomark from '@/components/ui/Logomark.astro';
 import { closing } from '@/config/home';
 import { legalLinks, navigation, siteConfig } from '@/config/site';
-import { socialIcon } from '@/lib/socials';
 
 interface Props {
   closing?: boolean;
 }
 
 const { closing: showClosing = true } = Astro.props;
-const { email } = siteConfig.author;
+const { business } = siteConfig;
 const year = new Date().getFullYear();
 ---
 
@@ -25,12 +24,12 @@ const year = new Date().getFullYear();
         </h2>
         <p class="mt-6 max-w-xl text-lead text-night-muted">{closing.text}</p>
         <div class="mt-10 flex flex-wrap items-center gap-3">
-          <a class="btn btn-accent" href={`mailto:${email}`}>
-            {email}
-            <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
+          <a class="btn btn-accent" href={business.whatsapp} target="_blank" rel="noopener">
+            <Icon name="social-whatsapp" class="size-4" />
+            Booking via WhatsApp
           </a>
-          <a class="btn text-night-ink underline-offset-4 hover:underline" href="/resume/">
-            View resume
+          <a class="btn text-night-ink underline-offset-4 hover:underline" href={`tel:${business.phone}`}>
+            {business.phoneDisplay}
           </a>
         </div>
       </div>
@@ -44,21 +43,21 @@ const year = new Date().getFullYear();
       <a href="/" class="inline-flex items-center gap-2.5 text-[1.15rem] font-semibold tracking-[-0.03em]">
         <Logomark />
         <span>{siteConfig.name}</span>
-        <span class="sr-only">, home</span>
+        <span class="sr-only">, beranda</span>
       </a>
       <p class="mt-5 max-w-xs text-muted">
-        {siteConfig.author.role} based in {siteConfig.author.location}. Working with teams worldwide.
+        {business.tagline} di {business.location}. Sewa motor, mobil, dan Elf plus supir, respon cepat 24 jam.
       </p>
     </div>
 
     <nav aria-labelledby="footer-pages">
       <h2 id="footer-pages" class="text-sm font-medium text-muted">
-        Pages
+        Halaman
       </h2>
       <ul class="mt-4 grid gap-2.5">
         <li>
           <a class="footer-link" href="/">
-            Home
+            Beranda
           </a>
         </li>
         {navigation.map((link) => (
@@ -71,21 +70,27 @@ const year = new Date().getFullYear();
       </ul>
     </nav>
 
-    <nav aria-labelledby="footer-elsewhere">
-      <h2 id="footer-elsewhere" class="text-sm font-medium text-muted">
-        Elsewhere
-      </h2>
+    <div>
+      <h2 class="text-sm font-medium text-muted">Kontak</h2>
       <ul class="mt-4 grid gap-2.5">
-        {siteConfig.socials.map((social) => (
-          <li>
-            <a class="footer-link inline-flex items-center gap-2.5" href={social.href} rel="me noopener">
-              <Icon name={socialIcon(social.label)} class="size-3.5 text-muted" />
-              {social.label}
-            </a>
-          </li>
-        ))}
+        <li>
+          <a
+            class="footer-link inline-flex items-center gap-2.5"
+            href={business.whatsapp}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="social-whatsapp" class="size-3.5 text-accent-ink" />
+            {business.phoneDisplay}
+          </a>
+        </li>
+        <li class="inline-flex items-center gap-2.5">
+          <Icon name="map-pin" class="size-3.5 text-muted" />
+          {business.location}
+        </li>
+        <li class="text-muted">{business.payments}</li>
       </ul>
-    </nav>
+    </div>
 
     <nav aria-labelledby="footer-legal">
       <h2 id="footer-legal" class="text-sm font-medium text-muted">
@@ -112,10 +117,10 @@ const year = new Date().getFullYear();
 
   <div class="shell flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 text-sm text-muted">
     <p>
-      &copy; {year} {siteConfig.author.name}. All rights reserved.
+      &copy; {year} {business.name}. Hak cipta dilindungi.
     </p>
     <a href="#content" class="inline-flex items-center gap-1.5 hover:text-ink">
-      Back to top
+      Kembali ke atas
       <Icon name="arrow-up" class="size-3.5" />
     </a>
   </div>

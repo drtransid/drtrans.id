@@ -3,53 +3,53 @@ export interface NavLink {
   href: string;
 }
 
+const whatsappNumber = '6285163681922';
+const whatsappMessage = 'Halo DRTRANS.ID, saya ingin booking kendaraan.';
+
 export const siteConfig = {
-  name: 'Maria',
-  title: 'Maria - Product designer portfolio',
+  name: 'drtrans.id',
+  title: 'Jasa Sewa Motor, Mobil Madiun Mulai 75K - DRTRANS.ID',
   description:
-    'Maria is a product designer who turns dense workflows and fuzzy requirements into clear, trustworthy digital products. Selected work, case studies, and resume.',
-  siteUrl: 'https://maria.xocoweb.workers.dev',
-  language: 'en',
-  locale: 'en_US',
-  dateLocale: 'en-US',
+    'DRTRANS.ID melayani rental motor, mobil, dan Elf Hiace plus supir di Madiun, Jawa Timur. Unit bersih, GPS gratis, kendaraan diasuransikan, respon cepat 24 jam.',
+  siteUrl: 'https://www.drtrans.id',
+  language: 'id',
+  locale: 'id_ID',
+  dateLocale: 'id-ID',
   socialImage: '/og-image.png',
 
-  author: {
-    name: 'Maria Ionescu',
-    role: 'Product Designer',
-    location: 'Lisbon, Portugal',
-    email: 'hello@example.com',
+  business: {
+    name: 'DRTRANS.ID',
+    tagline: 'Rental Kendaraan Madiun',
+    location: 'Madiun, Jawa Timur',
+    city: 'Madiun',
+    region: 'Jawa Timur',
+    country: 'ID',
+    phoneDisplay: '0851-6368-1922',
+    phone: `+${whatsappNumber}`,
+    whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+    payments: 'Transfer bank BCA dan BRI',
   },
 
   /** The pill above the homepage headline. Set `enabled: false` to remove it. */
   availability: {
     enabled: true,
-    label: 'Available for new projects from January 2027',
+    label: 'Unit terbatas, booking sekarang',
   },
 
   /** The button at the end of the header and in the mobile menu. */
-  action: { label: 'Get in touch', href: 'mailto:hello@example.com' },
-
-  /** A PDF in `public/`, offered on the resume page. Leave empty to hide the button. */
-  resumePdf: '',
+  action: { label: 'Booking Now', href: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}` },
 
   /** The banner and preferences dialog. Set `enabled: false` to remove both. */
   cookieConsent: {
     enabled: true,
   },
-
-  socials: [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { label: 'Dribbble', href: 'https://dribbble.com/' },
-    { label: 'Behance', href: 'https://www.behance.net/' },
-    { label: 'Instagram', href: 'https://www.instagram.com/' },
-  ] satisfies NavLink[],
 };
 
 export const navigation: NavLink[] = [
-  { label: 'Work', href: '/work/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Resume', href: '/resume/' },
+  { label: 'Armada', href: '/#armada' },
+  { label: 'Layanan', href: '/#layanan' },
+  { label: 'Wisata', href: '/#wisata' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 export const legalLinks: NavLink[] = [

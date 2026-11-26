@@ -4,12 +4,12 @@ import SectionHead from '@/components/ui/SectionHead.astro';
 import { services } from '@/config/home';
 ---
 
-<section class="shell mt-28 sm:mt-36" aria-labelledby="services-title">
+<section id="layanan" class="shell mt-28 sm:mt-36" aria-labelledby="services-title">
   <SectionHead id="services-title" eyebrow={services.eyebrow} title={services.title} />
-  <ul class="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+  <ul class="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
     {services.items.map((item) => (
       <li class="reveal flex flex-col bg-surface p-7 sm:p-8">
-        <span class="grid size-11 place-items-center rounded-xl bg-accent text-on-accent">
+        <span class="grid size-11 place-items-center rounded-xl bg-sunken text-ink">
           <Icon name={item.icon} class="size-5" />
         </span>
         <h3 class="mt-10 text-title">{item.title}</h3>
