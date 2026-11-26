@@ -13,7 +13,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
     <a href="/" class="flex items-center gap-2.5 rounded-lg text-[1.15rem] font-semibold tracking-[-0.03em]">
       <Logomark />
       <span>{siteConfig.name}</span>
-      <span class="sr-only">, home</span>
+      <span class="sr-only">, beranda</span>
     </a>
 
     <nav aria-label="Main" class="ml-auto hidden md:block">
@@ -30,7 +30,13 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
 
     <div class="ml-auto flex items-center gap-1.5 md:ml-2">
       <ThemeToggle />
-      <a class="btn btn-primary btn-sm ml-1 hidden sm:inline-flex" href={siteConfig.action.href}>
+      <a
+        class="btn btn-accent btn-sm ml-1 hidden sm:inline-flex"
+        href={siteConfig.action.href}
+        target="_blank"
+        rel="noopener"
+      >
+        <Icon name="social-whatsapp" class="size-3.5" />
         {siteConfig.action.label}
       </a>
       <button
@@ -51,7 +57,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       <a href="/" class="flex items-center gap-2.5 text-[1.15rem] font-semibold tracking-[-0.03em]">
         <Logomark />
         <span>{siteConfig.name}</span>
-        <span class="sr-only">, home</span>
+        <span class="sr-only">, beranda</span>
       </a>
       <button
         type="button"
@@ -67,7 +73,7 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       <ul class="grid">
         <li>
           <a href="/" class="mobile-link" aria-current={path === '/' ? 'page' : undefined}>
-            Home
+            Beranda
           </a>
         </li>
         {navigation.map((link) => (
@@ -80,7 +86,8 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
       </ul>
     </nav>
     <div class="shell mt-8">
-      <a class="btn btn-primary w-full" href={siteConfig.action.href}>
+      <a class="btn btn-accent w-full" href={siteConfig.action.href} target="_blank" rel="noopener">
+        <Icon name="social-whatsapp" class="size-4" />
         {siteConfig.action.label}
       </a>
     </div>
@@ -88,6 +95,11 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const syncScrolled = () => header?.toggleAttribute('data-scrolled', window.scrollY > 8);
+  syncScrolled();
+  window.addEventListener('scroll', syncScrolled, { passive: true });
+
   const menu = document.getElementById('mobile-nav') as HTMLDialogElement | null;
 
   if (menu && !('command' in HTMLButtonElement.prototype)) {
@@ -105,18 +117,47 @@ const current = (href: string) => (path === href ? 'page' : path.startsWith(href
 </script>
 
 <style>
-  @supports (animation-timeline: scroll()) {
-    .site-header {
-      animation: header-line linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 4rem;
-    }
+  .site-header {
+    transition:
+      background-color 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease,
+      backdrop-filter 260ms ease;
   }
 
-  @keyframes header-line {
-    to {
-      border-bottom-color: var(--line);
-    }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent) 20%,
+      var(--accent-strong) 50%,
+      var(--accent) 80%,
+      transparent
+    );
+    transform: scaleX(0);
+    transform-origin: center;
+    opacity: 0;
+    transition:
+      transform 500ms var(--ease-out-expo),
+      opacity 260ms ease;
+    pointer-events: none;
+  }
+
+  .site-header[data-scrolled] {
+    background-color: color-mix(in oklab, var(--canvas) 68%, transparent);
+    border-bottom-color: color-mix(in oklab, var(--line) 80%, transparent);
+    box-shadow: 0 10px 30px -18px rgb(11 11 12 / 0.35);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+  }
+
+  .site-header[data-scrolled]::after {
+    transform: scaleX(1);
+    opacity: 1;
   }
 
   .nav-link {

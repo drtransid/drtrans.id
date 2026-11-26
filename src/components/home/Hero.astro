@@ -1,66 +1,87 @@
 ---
-import { Image } from 'astro:assets';
-import portrait from '@/assets/images/maria.webp';
 import Icon from '@/components/ui/Icon.astro';
 import { hero } from '@/config/home';
 import { siteConfig } from '@/config/site';
+
+const { business } = siteConfig;
 ---
 
-<section class="shell pt-14 pb-20 sm:pt-20 sm:pb-28 lg:pt-24" aria-labelledby="hero-title">
-  {siteConfig.availability.enabled && (
-    <p class="rise inline-flex items-center gap-3 rounded-full border border-line bg-surface py-1.5 pr-4 pl-1.5 text-sm text-body shadow-[0_1px_2px_rgb(18_18_17/0.04)]">
-      <Image
-        src={portrait}
-        alt=""
-        width={56}
-        height={56}
-        loading="eager"
-        class="size-7 rounded-full object-cover object-top"
-      />
-      <span class="availability-dot" aria-hidden="true" />
-      {siteConfig.availability.label}
-    </p>
-  )}
+<section class="hero relative overflow-hidden" aria-labelledby="hero-title">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="shell relative pt-14 pb-20 sm:pt-20 sm:pb-28 lg:pt-24">
+    {siteConfig.availability.enabled && (
+      <p class="rise inline-flex items-center gap-3 rounded-full border border-line bg-surface py-1.5 pr-4 pl-3 text-sm text-body shadow-[0_1px_2px_rgb(11_11_12/0.04)]">
+        <span class="availability-dot" aria-hidden="true" />
+        {business.tagline} &middot; {siteConfig.availability.label}
+      </p>
+    )}
 
-  <h1 id="hero-title" class="rise mt-8 max-w-[17ch] text-display" style="--rise-step: 1">
-    {hero.greeting} {hero.title} <span class="serif">{hero.highlight}</span>
-  </h1>
+    <h1 id="hero-title" class="rise mt-8 max-w-[16ch] text-display" style="--rise-step: 1">
+      {hero.title} <span class="serif text-accent-ink">{hero.highlight}</span>
+    </h1>
 
-  <div class="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-    <div class="rise" style="--rise-step: 2">
-      <p class="max-w-xl text-lead text-body">{hero.text}</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a class="btn btn-primary" href={hero.primary.href}>
-          {hero.primary.label}
-          <Icon name="arrow-right" class="icon-nudge size-4" />
-        </a>
-        <a class="btn btn-ghost" href={hero.secondary.href}>
-          {hero.secondary.label}
-        </a>
+    <div class="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+      <div class="rise" style="--rise-step: 2">
+        <p class="max-w-xl text-lead text-body">{hero.text}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="btn btn-accent" href={business.whatsapp} target="_blank" rel="noopener">
+            <Icon name="social-whatsapp" class="size-4" />
+            {hero.primary.label}
+          </a>
+          <a class="btn btn-ghost" href={hero.secondary.href}>
+            {hero.secondary.label}
+            <Icon name="arrow-right" class="icon-nudge size-4" />
+          </a>
+        </div>
       </div>
+
+      <dl
+        class="rise grid grid-cols-3 gap-6 border-t border-line pt-6 sm:gap-10 lg:border-t-0 lg:pt-0"
+        style="--rise-step: 3"
+      >
+        {hero.facts.map((fact) => (
+          <div class="flex flex-col-reverse gap-1">
+            <dt class="max-w-[13ch] text-sm leading-snug text-muted">{fact.label}</dt>
+            <dd class="text-section">{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
 
-    <dl
-      class="rise grid grid-cols-3 gap-6 border-t border-line pt-6 sm:gap-10 lg:border-t-0 lg:pt-0"
-      style="--rise-step: 3"
+    <p
+      class="rise mt-14 flex items-start gap-3 rounded-panel border border-line bg-surface p-4 text-sm text-body sm:items-center"
+      style="--rise-step: 4"
+      role="note"
     >
-      {hero.facts.map((fact) => (
-        <div class="flex flex-col-reverse gap-1">
-          <dt class="max-w-[13ch] text-sm leading-snug text-muted">{fact.label}</dt>
-          <dd class="text-section">{fact.value}</dd>
-        </div>
-      ))}
-    </dl>
+      <Icon name="triangle-alert" class="mt-0.5 size-4.5 text-accent-ink sm:mt-0" />
+      <span>
+        {hero.warning}{' '}
+        <a class="link font-semibold" href={business.whatsapp} target="_blank" rel="noopener">
+          {business.phoneDisplay} (WA)
+        </a>
+      </span>
+    </p>
   </div>
 </section>
 
 <style>
+  .hero-glow {
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: min(48rem, 90vw);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 28%, transparent), transparent);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
   .availability-dot {
     position: relative;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
-    background: #22a55b;
+    background: var(--accent);
   }
 
   @media (prefers-reduced-motion: no-preference) {
