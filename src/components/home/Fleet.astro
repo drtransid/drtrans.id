@@ -17,7 +17,7 @@ const bookingHref = (name: string) =>
       <li class="reveal">
         <article class="fleet-card flex h-full flex-col rounded-card border border-line bg-surface p-6 sm:p-7">
           <div class="flex items-start justify-between gap-4">
-            <span class="grid size-12 place-items-center rounded-xl bg-accent text-on-accent">
+            <span class="grid size-12 place-items-center rounded-xl bg-sunken text-ink">
               <Icon name="car" class="size-6" />
             </span>
             <span class="chip">Mobil</span>
@@ -76,15 +76,10 @@ const bookingHref = (name: string) =>
 
 <style>
   .fleet-card {
-    transition:
-      border-color 200ms ease,
-      transform 300ms var(--ease-out-expo),
-      box-shadow 300ms ease;
+    transition: border-color 200ms ease;
   }
 
   .fleet-card:hover {
-    border-color: color-mix(in oklab, var(--accent) 55%, var(--line));
-    box-shadow: var(--shadow-card);
-    transform: translateY(-3px);
+    border-color: var(--line-strong);
   }
 </style>
