@@ -19,6 +19,7 @@ export const siteConfig = {
 
   business: {
     name: 'DRTRANS.ID',
+    legalName: 'PT. AZZAHRA JAYA TRANSPORTATION',
     tagline: 'Rental Kendaraan Madiun',
     location: 'Madiun, Jawa Timur',
     city: 'Madiun',
@@ -48,6 +49,8 @@ export const siteConfig = {
 export const navigation: NavLink[] = [
   { label: 'Armada', href: '/#armada' },
   { label: 'Layanan', href: '/#layanan' },
+  { label: 'Area', href: '/work/' },
+  { label: 'Tentang Kami', href: '/about/' },
   { label: 'Wisata', href: '/#wisata' },
   { label: 'FAQ', href: '/#faq' },
 ];

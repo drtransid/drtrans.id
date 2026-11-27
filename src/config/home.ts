@@ -14,9 +14,17 @@ export const hero = {
 };
 
 export const fleet = {
-  eyebrow: 'Rental mobil',
-  title: 'Armada yang siap jalan',
-  text: 'Unit berkualitas, bersih, layak jalan, dan dirawat berkala oleh tim mekanik kami. Tersedia lepas kunci maupun dengan driver.',
+  eyebrow: 'Armada kendaraan',
+  title: 'Armada roda dua & mobil siap jalan',
+  text: 'Unit motor dan mobil berkualitas, bersih, layak jalan, dan dirawat berkala oleh tim mekanik kami. Tersedia lepas kunci maupun dengan driver.',
+  motorbikes: [
+    { name: 'Honda Beat', transmission: 'Matic', power: 110, rate: 'Mulai 75K' },
+    { name: 'Honda Scoopy', transmission: 'Matic', power: 110, rate: 'Mulai 85K' },
+    { name: 'Honda Vario 125', transmission: 'Matic', power: 125, rate: 'Mulai 95K' },
+    { name: 'Yamaha Aerox 155', transmission: 'Matic', power: 155, rate: 'Mulai 130K' },
+    { name: 'Yamaha NMAX 155', transmission: 'Matic', power: 155, rate: 'Mulai 135K' },
+    { name: 'Honda PCX 160', transmission: 'Matic', power: 160, rate: 'Mulai 145K' },
+  ],
   items: [
     { name: 'Daihatsu Ayla', driver: 'Opsional', seats: 5, power: 998 },
     { name: 'Daihatsu Sigra', driver: 'Opsional', seats: 7, power: 998 },

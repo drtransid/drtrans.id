@@ -10,58 +10,131 @@ const bookingHref = (name: string) =>
 ---
 
 <section id="armada" class="shell mt-8 sm:mt-12" aria-labelledby="armada-title">
-  <SectionHead id="armada-title" eyebrow={fleet.eyebrow} title={fleet.title} text={fleet.text} />
+  <SectionHead id="armada-title" eyebrow={fleet.eyebrow} title={fleet.title} text={fleet.text}>
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter jenis armada" data-fleet-tabs>
+      <button type="button" role="tab" aria-selected="true" class="fleet-tab btn btn-sm btn-primary" data-filter="all">
+        Semua Unit
+      </button>
+      <button type="button" role="tab" aria-selected="false" class="fleet-tab btn btn-sm btn-ghost" data-filter="motor">
+        Roda Dua (Motor)
+      </button>
+      <button type="button" role="tab" aria-selected="false" class="fleet-tab btn btn-sm btn-ghost" data-filter="mobil">
+        Roda Empat (Mobil)
+      </button>
+    </div>
+  </SectionHead>
 
-  <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    {fleet.items.map((car) => (
-      <li class="reveal">
-        <article class="fleet-card flex h-full flex-col rounded-card border border-line bg-surface p-6 sm:p-7">
-          <div class="flex items-start justify-between gap-4">
-            <span class="grid size-12 place-items-center rounded-xl bg-sunken text-ink">
-              <Icon name="car" class="size-6" />
-            </span>
-            <span class="chip">Mobil</span>
-          </div>
-          <h3 class="mt-8 text-title">{car.name}</h3>
-          <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-line pt-5 text-sm">
-            <div>
-              <dt class="flex items-center gap-1.5 text-muted">
-                <Icon name="user-check" class="size-3.5" />
-                Driver
-              </dt>
-              <dd class="mt-1 font-medium">{car.driver}</dd>
+  <div id="armada-motor" class="mt-12" data-fleet-group="motor">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-line pb-4">
+      <h3 class="text-title">Kendaraan Roda Dua (Motor)</h3>
+      <p class="text-sm text-muted">Termasuk 2 helm SNI &amp; jas hujan &middot; Gratis antar area Madiun</p>
+    </div>
+    <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {fleet.motorbikes.map((bike) => (
+        <li class="reveal">
+          <article class="fleet-card flex h-full flex-col rounded-card border border-line bg-surface p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="grid size-12 place-items-center rounded-xl bg-sunken text-ink">
+                <Icon name="bike" class="size-6" />
+              </span>
+              <span class="chip">Roda Dua</span>
             </div>
-            <div>
-              <dt class="flex items-center gap-1.5 text-muted">
-                <Icon name="users" class="size-3.5" />
-                Kursi
-              </dt>
-              <dd class="mt-1 font-medium">{car.seats} seats</dd>
-            </div>
-            <div>
-              <dt class="flex items-center gap-1.5 text-muted">
-                <Icon name="gauge" class="size-3.5" />
-                Mesin
-              </dt>
-              <dd class="mt-1 font-medium">{car.power} cc</dd>
-            </div>
-          </dl>
-          <a
-            class="btn btn-primary btn-sm mt-7 w-full"
-            href={bookingHref(car.name)}
-            target="_blank"
-            rel="noopener"
-            aria-label={`Booking ${car.name} via WhatsApp`}
-          >
-            Booking Now
-            <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
-          </a>
-        </article>
-      </li>
-    ))}
-  </ul>
+            <h4 class="mt-8 text-title">{bike.name}</h4>
+            <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-line pt-5 text-sm">
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="sparkles" class="size-3.5" />
+                  Tipe
+                </dt>
+                <dd class="mt-1 font-medium">{bike.transmission}</dd>
+              </div>
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="gauge" class="size-3.5" />
+                  Mesin
+                </dt>
+                <dd class="mt-1 font-medium">{bike.power} cc</dd>
+              </div>
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="badge-percent" class="size-3.5" />
+                  Tarif
+                </dt>
+                <dd class="mt-1 font-medium">{bike.rate}</dd>
+              </div>
+            </dl>
+            <a
+              class="btn btn-primary btn-sm mt-7 w-full"
+              href={bookingHref(`Motor ${bike.name}`)}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Booking ${bike.name} via WhatsApp`}
+            >
+              Booking Now
+              <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
+            </a>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-  <div class="reveal mt-5 flex flex-col gap-6 rounded-card bg-night p-7 text-night-ink sm:flex-row sm:items-center sm:justify-between sm:p-9">
+  <div id="armada-mobil" class="mt-14" data-fleet-group="mobil">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-line pb-4">
+      <h3 class="text-title">Kendaraan Roda Empat (Mobil)</h3>
+      <p class="text-sm text-muted">Gratis GPS &amp; asuransi penuh &middot; Lepas kunci atau plus driver</p>
+    </div>
+    <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {fleet.items.map((car) => (
+        <li class="reveal">
+          <article class="fleet-card flex h-full flex-col rounded-card border border-line bg-surface p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <span class="grid size-12 place-items-center rounded-xl bg-sunken text-ink">
+                <Icon name="car" class="size-6" />
+              </span>
+              <span class="chip">Mobil</span>
+            </div>
+            <h4 class="mt-8 text-title">{car.name}</h4>
+            <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-line pt-5 text-sm">
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="user-check" class="size-3.5" />
+                  Driver
+                </dt>
+                <dd class="mt-1 font-medium">{car.driver}</dd>
+              </div>
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="users" class="size-3.5" />
+                  Kursi
+                </dt>
+                <dd class="mt-1 font-medium">{car.seats} seats</dd>
+              </div>
+              <div>
+                <dt class="flex items-center gap-1.5 text-muted">
+                  <Icon name="gauge" class="size-3.5" />
+                  Mesin
+                </dt>
+                <dd class="mt-1 font-medium">{car.power} cc</dd>
+              </div>
+            </dl>
+            <a
+              class="btn btn-primary btn-sm mt-7 w-full"
+              href={bookingHref(car.name)}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Booking ${car.name} via WhatsApp`}
+            >
+              Booking Now
+              <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
+            </a>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="reveal mt-6 flex flex-col gap-6 rounded-card bg-night p-7 text-night-ink sm:flex-row sm:items-center sm:justify-between sm:p-9">
     <div class="max-w-xl">
       <p class="eyebrow text-night-muted">Sewa Elf</p>
       <h3 class="mt-3 text-title">{fleet.extra.title}</h3>
@@ -73,6 +146,27 @@ const bookingHref = (name: string) =>
     </a>
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-fleet-tabs] [data-filter]');
+  const groups = document.querySelectorAll<HTMLElement>('[data-fleet-group]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter ?? 'all';
+      tabs.forEach((button) => {
+        const active = button === tab;
+        button.setAttribute('aria-selected', String(active));
+        button.classList.toggle('btn-primary', active);
+        button.classList.toggle('btn-ghost', !active);
+      });
+      groups.forEach((group) => {
+        const match = filter === 'all' || group.dataset.fleetGroup === filter;
+        group.hidden = !match;
+      });
+    });
+  });
+</script>
 
 <style>
   .fleet-card {

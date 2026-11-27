@@ -1,0 +1,142 @@
+---
+import { getCollection, render } from 'astro:content';
+import Icon from '@/components/ui/Icon.astro';
+import PageHero from '@/components/ui/PageHero.astro';
+import { siteConfig } from '@/config/site';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { workDetailSchema } from '@/lib/schema';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+
+const allEntries = (await getCollection('work', ({ data: item }) => !item.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const relatedEntries = allEntries.filter((item) => item.id !== entry.id).slice(0, 3);
+
+const { whatsapp } = siteConfig.business;
+const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
+  `Halo DRTRANS.ID, saya ingin booking layanan ${data.title}.`,
+)}`;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  type="article"
+  structuredData={workDetailSchema({
+    title: data.title,
+    description: data.description,
+    path: `/work/${entry.id}/`,
+    targetLocation: data.targetLocation,
+    serviceType: data.category,
+  })}
+>
+  <nav class="shell pt-8 text-sm text-muted" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a class="hover:text-ink" href="/">Beranda</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a class="hover:text-ink" href="/work/">Area Madiun</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-ink" aria-current="page">{data.targetLocation}</li>
+    </ol>
+  </nav>
+
+  <PageHero
+    eyebrow={`${data.category} · ${data.targetLocation}`}
+    title={data.headline}
+    highlight={data.highlight}
+    text={data.description}
+  >
+    <div class="rise mt-8 flex flex-wrap gap-3" style="--rise-step: 3">
+      <a class="btn btn-primary" href={bookingUrl} target="_blank" rel="noopener">
+        <Icon name="social-whatsapp" class="size-4" />
+        Booking untuk {data.targetLocation}
+      </a>
+      <a class="btn btn-ghost" href="/#armada">
+        Lihat semua unit
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="shell mt-12 sm:mt-16" aria-label="Detail layanan">
+    <div
+      class="tint-panel rounded-card border border-line p-6 sm:p-8"
+      style={`--tint: ${data.tint}`}
+    >
+      <dl class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <dt class="text-sm text-muted">Titik Layanan</dt>
+          <dd class="mt-1 font-semibold text-ink">{data.targetLocation}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted">Jenis Armada</dt>
+          <dd class="mt-1 font-semibold text-ink">{data.category}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted">Tarif / Paket</dt>
+          <dd class="mt-1 font-semibold text-ink">{data.priceFrom}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted">Pengantaran</dt>
+          <dd class="mt-1 font-semibold text-ink">{data.deliveryInfo}</dd>
+        </div>
+      </dl>
+      <ul class="mt-6 flex flex-wrap gap-2 border-t border-line pt-5">
+        {data.services.map((service) => (
+          <li class="chip bg-surface/85">{service}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <article class="shell mt-14 sm:mt-20">
+    <div class="prose border-t border-line pt-10">
+      <Content />
+    </div>
+  </article>
+
+  {relatedEntries.length > 0 && (
+    <section class="shell mt-24 sm:mt-32" aria-labelledby="related-work-title">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-line pb-4">
+        <h2 id="related-work-title" class="text-section">Panduan area lainnya</h2>
+        <a class="link text-sm font-medium" href="/work/">Semua panduan area</a>
+      </div>
+      <ul class="mt-8 grid gap-5 sm:grid-cols-3">
+        {relatedEntries.map((item) => (
+          <li>
+            <a
+              href={`/work/${item.id}/`}
+              class="flex h-full flex-col justify-between rounded-card border border-line bg-surface p-6 transition-colors hover:border-line-strong"
+            >
+              <div>
+                <span class="chip">{item.data.targetLocation}</span>
+                <h3 class="mt-4 text-title">{item.data.title}</h3>
+                <p class="mt-2 text-sm text-muted">{item.data.priceFrom}</p>
+              </div>
+              <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                Lihat detail
+                <Icon name="arrow-up-right" class="size-4" />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .prose :global(h2:first-child) {
+    margin-top: 0;
+  }
+</style>

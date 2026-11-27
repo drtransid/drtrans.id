@@ -48,6 +48,7 @@ const year = new Date().getFullYear();
       <p class="mt-5 max-w-xs text-muted">
         {business.tagline} di {business.location}. Sewa motor, mobil, dan Elf plus supir, respon cepat 24 jam.
       </p>
+      <p class="mt-3 text-sm font-semibold tracking-[0.01em] text-ink">{business.legalName}</p>
     </div>
 
     <nav aria-labelledby="footer-pages">
@@ -117,7 +118,7 @@ const year = new Date().getFullYear();
 
   <div class="shell flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 text-sm text-muted">
     <p>
-      &copy; {year} {business.name}. Hak cipta dilindungi.
+      &copy; {year} {business.legalName} ({business.name}). Hak cipta dilindungi.
     </p>
     <a href="#content" class="inline-flex items-center gap-1.5 hover:text-ink">
       Kembali ke atas
