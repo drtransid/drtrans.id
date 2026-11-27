@@ -1,5 +1,29 @@
 {
   "framework": "astro",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/blog/info-sewa-motor-dekat-stasiun-kereta-madiun", "destination": "/area/sewa-motor-stasiun-madiun/", "permanent": true },
+    { "source": "/blog/info-sewa-motor-dekat-stasiun-kereta-madiun/", "destination": "/area/sewa-motor-stasiun-madiun/", "permanent": true },
+    { "source": "/blog", "destination": "/", "permanent": true },
+    { "source": "/blog/", "destination": "/", "permanent": true },
+    { "source": "/blog/:path*", "destination": "/", "permanent": true },
+    { "source": "/mobil-madiun", "destination": "/", "permanent": true },
+    { "source": "/mobil-madiun/", "destination": "/", "permanent": true },
+    { "source": "/mobil-madiun/:path*", "destination": "/", "permanent": true },
+    { "source": "/rental-madiun", "destination": "/", "permanent": true },
+    { "source": "/rental-madiun/", "destination": "/", "permanent": true },
+    { "source": "/about-me", "destination": "/about/", "permanent": true },
+    { "source": "/about-me/", "destination": "/about/", "permanent": true },
+    { "source": "/privacy-police", "destination": "/privacy/", "permanent": true },
+    { "source": "/privacy-police/", "destination": "/privacy/", "permanent": true },
+    { "source": "/tagar", "destination": "/", "permanent": true },
+    { "source": "/tagar/", "destination": "/", "permanent": true },
+    { "source": "/categories", "destination": "/", "permanent": true },
+    { "source": "/categories/", "destination": "/", "permanent": true },
+    { "source": "/categories/:path*", "destination": "/", "permanent": true },
+    { "source": "/tags", "destination": "/", "permanent": true },
+    { "source": "/tags/", "destination": "/", "permanent": true },
+    { "source": "/tags/:path*", "destination": "/", "permanent": true }
+  ]
 }
