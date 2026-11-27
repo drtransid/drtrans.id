@@ -1,28 +1,23 @@
 {
-  "name": "maria-astro-theme",
-  "description": "A free Astro portfolio theme for UX and product designers, with MDX case studies, a resume page, light and dark modes, and cookie consent.",
+  "name": "drtrans-id",
+  "description": "Website resmi DRTRANS.ID (PT. AZZAHRA JAYA TRANSPORTATION) - Rental motor, mobil, Elf Hiace, dan paket wisata Madiun.",
   "type": "module",
   "version": "3.0.1",
-  "author": "Andrei Alba",
+  "author": "DRTRANS.ID",
   "license": "MIT",
   "private": true,
   "keywords": [
-    "astro-theme",
+    "drtrans",
+    "rental-mobil-madiun",
+    "rental-motor-madiun",
     "astro",
-    "portfolio",
-    "ux",
-    "ui",
-    "product-design",
-    "designer",
-    "case-study",
-    "resume",
-    "mdx",
-    "tailwindcss"
+    "tailwindcss",
+    "pwa"
   ],
-  "homepage": "https://maria.xocoweb.workers.dev/",
+  "homepage": "https://drtrans.id/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xocothemes/maria.git"
+    "url": "https://github.com/drtransid/drtrans.id.git"
   },
   "engines": {
     "node": ">=22.12.0"

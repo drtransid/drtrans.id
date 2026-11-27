@@ -1,15 +1,15 @@
-# Maria - Astro Portfolio Theme for Product Designers
+# DRTRANS.ID - PT. AZZAHRA JAYA TRANSPORTATION
 
-[![Maria theme preview](./preview.webp)](https://maria.xocoweb.workers.dev/)
+[![DRTRANS.ID preview](./preview.webp)](https://drtrans.id/)
 
 [![Astro 7](https://img.shields.io/badge/Astro-7-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Configured-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-84cc16?style=for-the-badge)](./LICENSE)
 
-**Live preview:** https://maria.xocoweb.workers.dev/
+**Website:** https://drtrans.id/
 
-Maria is a free Astro theme for UX designers, product designers, and anyone whose portfolio is built on case studies. It pairs a calm, editorial layout with large type, a serif accent, and project cards framed in soft color, so the work stays the focus. Case studies are MDX files validated by Astro content collections, the copy lives in a few config files, and the output is fully static.
+Website resmi DRTRANS.ID (PT. AZZAHRA JAYA TRANSPORTATION) berbasis Astro 7 dan Tailwind CSS 4 dengan dukungan PWA, halaman SEO lokal Madiun (`/work/*`), katalog armada motor & mobil, serta mode tema Sistem/Light/Dark.
 
 ## Features
 
@@ -85,7 +85,7 @@ The bundled projects, people, and product screenshots are fictional demo content
 
 ## Support
 
-Maria is free and provided as-is. Bug reports and questions are welcome as [GitHub issues](https://github.com/xocothemes/maria/issues); custom design and feature work is not included. See [CONTRIBUTING.md](./CONTRIBUTING.md) to propose a change, and [CHANGELOG.md](./CHANGELOG.md) for release history.
+DRTRANS.ID repository by PT. AZZAHRA JAYA TRANSPORTATION (`drtransid/drtrans.id`). See [CONTRIBUTING.md](./CONTRIBUTING.md) and [CHANGELOG.md](./CHANGELOG.md) for development notes.
 
 ## License
 

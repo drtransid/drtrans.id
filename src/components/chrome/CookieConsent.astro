@@ -117,7 +117,7 @@ const categories = [
   type Category = 'analytics' | 'marketing';
   type Consent = { version: string; timestamp: string; analytics: boolean; marketing: boolean };
 
-  const storageKey = 'maria-cookie-consent';
+  const storageKey = 'drtrans-cookie-consent';
   const version = '1';
   const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
   const dialog = document.querySelector<HTMLDialogElement>('[data-cookie-dialog]');
@@ -144,7 +144,7 @@ const categories = [
       localStorage.setItem(storageKey, JSON.stringify(consent));
     } catch {}
     apply(consent);
-    window.dispatchEvent(new CustomEvent('maria:cookieConsentChanged', { detail: consent }));
+    window.dispatchEvent(new CustomEvent('drtrans:cookieConsentChanged', { detail: consent }));
   };
 
   const openPreferences = () => {
@@ -176,10 +176,10 @@ const categories = [
   document.addEventListener('click', (event) => {
     if ((event.target as Element).closest('[data-cookie-preferences]')) openPreferences();
   });
-  window.addEventListener('maria:openCookieConsent', openPreferences);
+  window.addEventListener('drtrans:openCookieConsent', openPreferences);
 
   Object.assign(window, {
-    mariaCookieConsent: {
+    drtransCookieConsent: {
       getConsent: read,
       hasConsent: () => Boolean(read()),
       canUse: (category: Category) => Boolean(read()?.[category]),

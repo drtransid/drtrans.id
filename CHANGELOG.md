@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Maria are documented here.
+All notable changes to DRTRANS are documented here.
 
 ## 3.0.1 - 2026-10-21
 

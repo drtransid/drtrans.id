@@ -1,6 +1,6 @@
 # Customization Guide
 
-Use this guide when adapting Maria for your own portfolio.
+Use this guide when adapting DRTRANS for your own site.
 
 ## Site Settings
 
@@ -133,9 +133,9 @@ The components live in [src/components/mdx](./src/components/mdx). To add your o
 
 ## About and Resume
 
-The About page copy lives in [src/config/about.ts](./src/config/about.ts): the headline, intro, the editorial sections, and the principles. Replace the portrait at [src/assets/images/maria.webp](./src/assets/images/maria.webp), which is also used in the homepage availability badge, and update `portraitAlt`.
+The About page copy lives in [src/config/about.ts](./src/config/about.ts): the headline, intro, the editorial sections, and the principles.
 
-The Resume page reads [src/config/resume.ts](./src/config/resume.ts): the snapshot, experience, capabilities, education, and tools. Tool logos are SVG files in [src/assets/logos](./src/assets/logos); set `dark: true` for a logo that needs a dark tile. To offer a PDF, put it in `public/` and set `siteConfig.resumePdf` to its path, for example `/maria-resume.pdf`.
+The Resume page reads [src/config/resume.ts](./src/config/resume.ts): the snapshot, experience, capabilities, education, and tools. Tool logos are SVG files in [src/assets/logos](./src/assets/logos); set `dark: true` for a logo that needs a dark tile. To offer a PDF, put it in `public/` and set `siteConfig.resumePdf` to its path, for example `/drtrans-profile.pdf`.
 
 ## Legal Pages
 
@@ -145,17 +145,17 @@ The bundled text is a starting point, not legal advice. Have it reviewed for you
 
 ## Cookie Consent
 
-The banner and preferences dialog live in [src/components/chrome/CookieConsent.astro](./src/components/chrome/CookieConsent.astro). Choices are saved in `localStorage` under `maria-cookie-consent`; the color theme is saved under `maria-theme`. Analytics and marketing are off until a visitor allows them.
+The banner and preferences dialog live in [src/components/chrome/CookieConsent.astro](./src/components/chrome/CookieConsent.astro). Choices are saved in `localStorage` under `drtrans-cookie-consent`; the color theme is saved under `drtrans-theme`. Analytics and marketing are off until a visitor allows them.
 
 Load optional scripts only after checking consent:
 
 ```html
 <script>
-  if (window.mariaCookieConsent?.canUse('analytics')) {
+  if (window.drtransCookieConsent?.canUse('analytics')) {
     // load analytics
   }
 
-  window.addEventListener('maria:cookieConsentChanged', (event) => {
+  window.addEventListener('drtrans:cookieConsentChanged', (event) => {
     if (event.detail.analytics) {
       // load analytics
     }
@@ -163,7 +163,7 @@ Load optional scripts only after checking consent:
 </script>
 ```
 
-`window.mariaCookieConsent` also has `getConsent()`, `hasConsent()`, and `openPreferences()`. Any element with a `data-cookie-preferences` attribute opens the dialog, like the footer button. When you connect a real tool, describe it on the Cookie Policy and Privacy pages. If you do not use any optional tools, set `cookieConsent.enabled` to `false`.
+`window.drtransCookieConsent` also has `getConsent()`, `hasConsent()`, and `openPreferences()`. Any element with a `data-cookie-preferences` attribute opens the dialog, like the footer button. When you connect a real tool, describe it on the Cookie Policy and Privacy pages. If you do not use any optional tools, set `cookieConsent.enabled` to `false`.
 
 ## Theme Tokens
 
@@ -192,7 +192,7 @@ Shared pieces such as `.btn`, `.eyebrow`, `.serif`, `.chip`, and the case study 
 
 ## Light and Dark Mode
 
-Maria follows the visitor's system setting until they press the theme toggle; their choice is then remembered. The script in [src/layouts/BaseLayout.astro](./src/layouts/BaseLayout.astro) applies the mode before the first paint, so there is no flash.
+DRTRANS follows the visitor's system setting until they select a mode in the footer theme field; their choice is then remembered. The script in [src/layouts/BaseLayout.astro](./src/layouts/BaseLayout.astro) applies the mode before the first paint, so there is no flash.
 
 Dark mode is the `dark` class on `<html>`. Use the `dark:` variant in markup, or `.dark` in CSS.
 

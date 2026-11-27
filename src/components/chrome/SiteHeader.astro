@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import ThemeToggle from '@/components/chrome/ThemeToggle.astro';
 import Icon from '@/components/ui/Icon.astro';
 import Logomark from '@/components/ui/Logomark.astro';
 import { navigation, siteConfig } from '@/config/site';
@@ -66,7 +65,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
               </div>
             </li>
           ) : link.href === '/work/' ? (
-            <li class="relative" data-dropdown-root>
+            <li class="static" data-dropdown-root>
               <button
                 type="button"
                 class="nav-link gap-1.5"
@@ -84,10 +83,10 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 role="region"
                 aria-label="Menu Area Stasiun dan Terminal Madiun"
                 hidden
-                class="mega-panel absolute top-full right-0 z-50 mt-2 rounded-panel border border-line bg-surface p-4 shadow-card"
+                class="mega-panel absolute top-full z-50 mt-2 rounded-panel border border-line bg-surface p-4 shadow-card"
                 data-dropdown-panel
               >
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid gap-4 sm:grid-cols-2">
                   <div>
                     <p class="px-2.5 text-[0.7rem] font-semibold tracking-wider text-muted uppercase">
                       Stasiun Madiun
@@ -158,18 +157,8 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
     </nav>
 
     <div class="ml-auto flex items-center gap-1.5 md:ml-2">
-      <button
-        type="button"
-        class="btn btn-ghost btn-sm hidden"
-        data-pwa-install
-        aria-label="Install aplikasi DRTRANS"
-      >
-        <Icon name="download" class="size-3.5" />
-        <span class="hidden lg:inline">Install</span>
-      </button>
-      <ThemeToggle />
       <a
-        class="btn btn-accent btn-sm ml-1 hidden sm:inline-flex"
+        class="btn btn-accent btn-sm hidden sm:inline-flex"
         href={siteConfig.action.href}
         target="_blank"
         rel="noopener"
@@ -266,11 +255,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
         )}
       </ul>
     </nav>
-    <div class="shell mt-8 grid gap-3">
-      <button type="button" class="btn btn-ghost hidden w-full" data-pwa-install>
-        <Icon name="download" class="size-4" />
-        Install Aplikasi DRTRANS
-      </button>
+    <div class="shell mt-8">
       <a class="btn btn-accent w-full" href={siteConfig.action.href} target="_blank" rel="noopener">
         <Icon name="social-whatsapp" class="size-4" />
         {siteConfig.action.label}
@@ -302,12 +287,28 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
 
   const dropdownRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-dropdown-root]'));
 
+  const clampPanel = (panel: HTMLElement) => {
+    panel.style.translate = '';
+    const rect = panel.getBoundingClientRect();
+    const edge = 16;
+    if (rect.left < edge) {
+      panel.style.translate = `${edge - rect.left}px 0`;
+    } else if (rect.right > window.innerWidth - edge) {
+      panel.style.translate = `${window.innerWidth - edge - rect.right}px 0`;
+    }
+  };
+
   const setDropdown = (root: HTMLElement, open: boolean) => {
     const trigger = root.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
     const panel = root.querySelector<HTMLElement>('[data-dropdown-panel]');
     if (!trigger || !panel) return;
     trigger.setAttribute('aria-expanded', String(open));
     panel.hidden = !open;
+    if (open) {
+      clampPanel(panel);
+    } else {
+      panel.style.translate = '';
+    }
   };
 
   const closeAllDropdowns = (except?: HTMLElement) => {
@@ -329,13 +330,15 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
       setDropdown(root, !isOpen);
     });
 
-    root.addEventListener('mouseenter', () => {
+    root.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'mouse') return;
       if (closeTimer) window.clearTimeout(closeTimer);
       closeAllDropdowns(root);
       setDropdown(root, true);
     });
 
-    root.addEventListener('mouseleave', () => {
+    root.addEventListener('pointerleave', (event) => {
+      if (event.pointerType !== 'mouse') return;
       closeTimer = window.setTimeout(() => setDropdown(root, false), 120);
     });
 
@@ -356,6 +359,17 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
       closeAllDropdowns();
     }
   });
+
+  window.addEventListener(
+    'resize',
+    () => {
+      dropdownRoots.forEach((root) => {
+        const panel = root.querySelector<HTMLElement>('[data-dropdown-panel]');
+        if (panel && !panel.hidden) clampPanel(panel);
+      });
+    },
+    { passive: true },
+  );
 </script>
 
 <style>
@@ -394,13 +408,18 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
   }
 
   .submenu-panel {
-    width: min(19rem, calc(100vw - 2rem));
-    min-width: 17.5rem;
+    width: min(19rem, calc(100vw - 2 * var(--gutter)));
+    max-height: calc(100dvh - var(--header-h) - 1rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .mega-panel {
-    width: min(32rem, calc(100vw - 2rem));
-    min-width: min(28rem, calc(100vw - 2rem));
+    right: var(--gutter);
+    width: min(32rem, calc(100vw - 2 * var(--gutter)));
+    max-height: calc(100dvh - var(--header-h) - 1rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .dropdown-chevron,

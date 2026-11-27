@@ -100,38 +100,47 @@ const schema = structuredData ?? websiteSchema();
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     <script is:inline>
       (() => {
-        const storageKey = 'maria-theme';
+        const storageKey = 'drtrans-theme';
         const root = document.documentElement;
         const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-        let stored = null;
+        const validModes = new Set(['system', 'light', 'dark']);
+        let mode = 'system';
 
         try {
-          stored = localStorage.getItem(storageKey);
+          const saved = localStorage.getItem(storageKey);
+          if (saved && validModes.has(saved)) mode = saved;
         } catch {}
 
-        const apply = (isDark) => {
-          root.classList.toggle('dark', isDark);
-          document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-            button.setAttribute('aria-pressed', String(isDark));
+        const resolveDark = (nextMode) =>
+          nextMode === 'dark' ? true : nextMode === 'light' ? false : systemDark.matches;
+
+        const apply = (nextMode) => {
+          mode = nextMode;
+          root.classList.toggle('dark', resolveDark(nextMode));
+          root.dataset.themeMode = nextMode;
+          document.querySelectorAll('[data-theme-select]').forEach((select) => {
+            if (select instanceof HTMLSelectElement) {
+              select.value = nextMode;
+            }
           });
         };
 
-        apply(stored ? stored === 'dark' : systemDark.matches);
+        apply(mode);
 
-        systemDark.addEventListener('change', (event) => {
-          if (!stored) apply(event.matches);
+        systemDark.addEventListener('change', () => {
+          if (mode === 'system') apply('system');
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-          apply(root.classList.contains('dark'));
-          document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-            button.addEventListener('click', () => {
-              const isDark = !root.classList.contains('dark');
-              stored = isDark ? 'dark' : 'light';
+          apply(mode);
+          document.querySelectorAll('[data-theme-select]').forEach((select) => {
+            select.addEventListener('change', () => {
+              const nextMode =
+                select instanceof HTMLSelectElement && validModes.has(select.value) ? select.value : 'system';
               try {
-                localStorage.setItem(storageKey, stored);
+                localStorage.setItem(storageKey, nextMode);
               } catch {}
-              apply(isDark);
+              apply(nextMode);
             });
           });
         });

@@ -14,27 +14,27 @@ import Icon from '@/components/ui/Icon.astro';
 </div>
 
 <dialog
-  id="pwa-ios-dialog"
-  aria-labelledby="pwa-ios-title"
+  id="pwa-guide-dialog"
+  aria-labelledby="pwa-guide-title"
   class="m-auto w-[min(calc(100%-2rem),26rem)] rounded-card border border-line bg-surface p-6 text-ink shadow-shot backdrop:bg-black/50"
 >
   <div class="flex items-start justify-between gap-4">
     <div>
-      <p class="eyebrow">Install Aplikasi</p>
-      <h2 id="pwa-ios-title" class="mt-3 text-title">Tambahkan DRTRANS ke Layar Utama</h2>
+      <p class="eyebrow">Install Aplikasi (PWA)</p>
+      <h2 id="pwa-guide-title" class="mt-3 text-title">Pasang DRTRANS di Perangkat Anda</h2>
     </div>
     <button
       type="button"
       class="grid size-9 place-items-center rounded-full hover:bg-sunken"
-      data-pwa-ios-close
+      data-pwa-guide-close
       aria-label="Tutup panduan instalasi"
     >
       <Icon name="x" class="size-4" />
     </button>
   </div>
-  <ol class="mt-4 grid gap-3 text-sm text-body">
+  <ol class="mt-4 grid gap-3 text-sm text-body" data-pwa-guide-ios hidden>
     <li class="rounded-panel border border-line bg-sunken px-4 py-3">
-      1. Ketuk tombol <strong>Bagikan (Share)</strong> pada bilah bawah Safari.
+      1. Ketuk tombol <strong>Bagikan (Share)</strong> pada bilah Safari.
     </li>
     <li class="rounded-panel border border-line bg-sunken px-4 py-3">
       2. Gulir ke bawah lalu pilih <strong>Tambah ke Layar Utama (Add to Home Screen)</strong>.
@@ -43,7 +43,18 @@ import Icon from '@/components/ui/Icon.astro';
       3. Ketuk <strong>Tambah</strong> untuk membuka DRTRANS.ID layaknya aplikasi.
     </li>
   </ol>
-  <button type="button" class="btn btn-primary btn-sm mt-6 w-full" data-pwa-ios-close>
+  <ol class="mt-4 grid gap-3 text-sm text-body" data-pwa-guide-browser>
+    <li class="rounded-panel border border-line bg-sunken px-4 py-3">
+      1. Buka menu browser (ikon <strong>⋮</strong> di Chrome/Android atau ikon aplikasi pada address bar desktop).
+    </li>
+    <li class="rounded-panel border border-line bg-sunken px-4 py-3">
+      2. Pilih <strong>Install DRTRANS</strong> atau <strong>Tambahkan ke Layar Utama</strong>.
+    </li>
+    <li class="rounded-panel border border-line bg-sunken px-4 py-3">
+      3. Konfirmasi <strong>Install</strong> untuk akses cepat ke panduan &amp; booking DRTRANS.ID.
+    </li>
+  </ol>
+  <button type="button" class="btn btn-primary btn-sm mt-6 w-full" data-pwa-guide-close>
     Mengerti
   </button>
 </dialog>
@@ -61,8 +72,10 @@ import Icon from '@/components/ui/Icon.astro';
   }
 
   const installButtons = document.querySelectorAll<HTMLButtonElement>('[data-pwa-install]');
-  const iosDialog = document.getElementById('pwa-ios-dialog') as HTMLDialogElement | null;
-  const iosCloseButtons = document.querySelectorAll<HTMLButtonElement>('[data-pwa-ios-close]');
+  const guideDialog = document.getElementById('pwa-guide-dialog') as HTMLDialogElement | null;
+  const guideCloseButtons = document.querySelectorAll<HTMLButtonElement>('[data-pwa-guide-close]');
+  const guideIos = document.querySelector<HTMLElement>('[data-pwa-guide-ios]');
+  const guideBrowser = document.querySelector<HTMLElement>('[data-pwa-guide-browser]');
   const offlineBanner = document.getElementById('offline-indicator');
 
   const isStandalone = () =>
@@ -76,9 +89,9 @@ import Icon from '@/components/ui/Icon.astro';
   let deferredPrompt: BeforeInstallPromptEvent | null = null;
 
   const syncInstallButtons = () => {
-    const show = !isStandalone() && (deferredPrompt !== null || isIOS());
+    const installed = isStandalone();
     installButtons.forEach((btn) => {
-      btn.classList.toggle('hidden', !show);
+      btn.classList.toggle('hidden', installed);
     });
   };
 
@@ -104,18 +117,21 @@ import Icon from '@/components/ui/Icon.astro';
           deferredPrompt = null;
         }
         syncInstallButtons();
-      } else if (isIOS()) {
-        iosDialog?.showModal();
+      } else {
+        const ios = isIOS();
+        if (guideIos) guideIos.hidden = !ios;
+        if (guideBrowser) guideBrowser.hidden = ios;
+        guideDialog?.showModal();
       }
     });
   });
 
-  iosCloseButtons.forEach((btn) => {
-    btn.addEventListener('click', () => iosDialog?.close());
+  guideCloseButtons.forEach((btn) => {
+    btn.addEventListener('click', () => guideDialog?.close());
   });
 
-  iosDialog?.addEventListener('click', (event) => {
-    if (event.target === iosDialog) iosDialog.close();
+  guideDialog?.addEventListener('click', (event) => {
+    if (event.target === guideDialog) guideDialog.close();
   });
 
   const syncOnlineState = () => {

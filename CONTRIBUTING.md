@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to Maria.
+Thanks for contributing to DRTRANS.
 
 ## Local Setup
 
