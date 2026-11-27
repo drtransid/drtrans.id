@@ -123,7 +123,7 @@ export const areaIndexSchema = () => ({
       '@type': 'CollectionPage',
       '@id': absolute('/area/#page'),
       url: absolute('/area/'),
-      name: `Area Layanan Rental Mobil & Sewa Motor Madiun | ${siteConfig.name}`,
+      name: `Area Layanan Rental Mobil & Rental Motor Madiun | ${siteConfig.name}`,
       description:
         'Cakupan layanan rental mobil dan sewa motor DRTRANS.ID di Kota dan Kabupaten Madiun: pusat kota, hotel, perkantoran, Stasiun Madiun, Terminal Purbaya, dan rute sekitar.',
       inLanguage: siteConfig.language,

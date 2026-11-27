@@ -10,9 +10,9 @@ const whatsappMessage = 'Halo DRTRANS.ID, saya ingin booking kendaraan.';
 
 export const siteConfig = {
   name: 'drtrans.id',
-  title: 'Rental Mobil & Sewa Motor Madiun Mulai 90K – DRTRANS.ID',
+  title: 'Rental Mobil & Rental Motor Madiun Mulai 90K – DRTRANS.ID',
   description:
-    'Rental mobil Madiun lepas kunci/supir mulai Rp300rb & sewa motor mulai 90K dari PT. Azzahra Jaya Transportation. Antar ke pusat kota, Stasiun & Terminal Purbaya 24 jam.',
+    'Rental mobil Madiun lepas kunci/supir mulai Rp300rb & rental motor mulai Rp90rb/hari dari PT. Azzahra Jaya Transportation. Antar ke pusat kota, Stasiun & Terminal Purbaya 24 jam.',
   siteUrl: 'https://www.drtrans.id',
   language: 'id',
   locale: 'id_ID',
@@ -22,7 +22,7 @@ export const siteConfig = {
   business: {
     name: 'DRTRANS.ID',
     legalName: 'PT. AZZAHRA JAYA TRANSPORTATION',
-    tagline: 'Rental Mobil & Sewa Motor Madiun',
+    tagline: 'Rental Mobil & Rental Motor Madiun',
     location: 'Madiun, Jawa Timur',
     city: 'Madiun',
     region: 'Jawa Timur',
@@ -57,7 +57,7 @@ export const siteConfig = {
 
 export const anchorLinks: NavLink[] = [
   { label: 'Semua Armada', href: '/#armada', description: 'Motor, mobil & Elf Hiace' },
-  { label: 'Sewa Motor (Roda Dua)', href: '/#armada-motor', description: 'Beat, Scoopy, Vario, NMAX mulai 90K' },
+  { label: 'Rental Motor (Roda Dua)', href: '/#armada-motor', description: 'Beat, Scoopy, Vario, NMAX mulai 90K' },
   { label: 'Rental Mobil (Roda Empat)', href: '/#armada-mobil', description: 'Lepas kunci atau plus driver' },
   { label: 'Keunggulan & Layanan', href: '/#layanan', description: 'Antar lokasi, GPS, asuransi & CS 24 jam' },
   { label: 'Syarat Singkat', href: '/#syarat', description: 'Dokumen sewa & transfer resmi BCA/BRI' },
