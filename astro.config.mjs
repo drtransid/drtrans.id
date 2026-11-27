@@ -20,6 +20,9 @@ export default defineConfig({
     layout: 'constrained',
     responsiveStyles: true,
   },
+  devToolbar: {
+    enabled: false,
+  },
   server: {
     host: '0.0.0.0',
     port: 3000,
@@ -28,6 +31,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     server: {
       allowedHosts: true,
+      hmr: false,
     },
   },
 });

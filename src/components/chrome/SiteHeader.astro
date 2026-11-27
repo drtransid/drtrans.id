@@ -45,7 +45,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 role="region"
                 aria-label="Menu Area Stasiun dan Terminal Madiun"
                 hidden
-                class="mega-panel absolute top-full right-0 mt-2 w-[min(32rem,calc(100vw-2rem))] rounded-panel border border-line bg-surface p-4 shadow-card"
+                class="mega-panel absolute top-full right-0 z-50 mt-2 rounded-panel border border-line bg-surface p-4 shadow-card"
                 data-mega-panel
               >
                 <div class="grid grid-cols-2 gap-4">
@@ -320,6 +320,11 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
   .nav-link[aria-expanded='true'] {
     color: var(--ink);
     background: var(--sunken);
+  }
+
+  .mega-panel {
+    width: min(32rem, calc(100vw - 2rem));
+    min-width: min(28rem, calc(100vw - 2rem));
   }
 
   .mega-chevron,
