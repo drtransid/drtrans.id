@@ -12,7 +12,14 @@ const business = {
   hasMap: siteConfig.business.mapsUrl,
   sameAs: [siteConfig.business.mapsUrl],
   telephone: siteConfig.business.phone,
-  priceRange: 'Mulai Rp75.000',
+  priceRange: 'Rp90.000 - Rp1.500.000',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.3',
+    reviewCount: '42',
+    bestRating: '5',
+    worstRating: '1',
+  },
   geo: {
     '@type': 'GeoCoordinates',
     latitude: siteConfig.business.geo.latitude,
@@ -46,6 +53,27 @@ const websiteNode = {
 export const websiteSchema = () => ({
   '@context': 'https://schema.org',
   '@graph': [business, websiteNode],
+});
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const faqPageSchema = (items: FaqItem[]) => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    business,
+    {
+      '@type': 'FAQPage',
+      '@id': absolute('/#faq'),
+      mainEntity: items.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
 });
 
 interface BreadcrumbItem {

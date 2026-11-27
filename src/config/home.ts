@@ -1,6 +1,6 @@
 export const hero = {
   title: 'Rental mobil & sewa motor Madiun,',
-  highlight: 'mulai 75K.',
+  highlight: 'mulai 90K.',
   text: 'Solusi rental mobil Madiun lepas kunci maupun plus supir, sewa motor matic terawat, serta charter Elf Hiace dari PT. AZZAHRA JAYA TRANSPORTATION. Kami antar langsung ke pusat kota, hotel, kantor, Stasiun Madiun, maupun Terminal Purbaya (Purboyo) 24 jam.',
   primary: { label: 'Booking via WhatsApp' },
   secondary: { label: 'Lihat armada', href: '/#armada' },
@@ -16,31 +16,31 @@ export const hero = {
 export const fleet = {
   eyebrow: 'Armada & tarif mulai dari',
   title: 'Pilihan sewa motor Madiun & rental mobil siap jalan',
-  text: 'Seluruh kendaraan adalah unit milik sendiri, bersih, wangi, dan dirawat mekanik internal kami. Tersedia paket sewa motor harian mulai Rp75.000/hari serta rental mobil lepas kunci atau dengan driver berpengalaman.',
+  text: 'Seluruh kendaraan adalah unit milik sendiri, bersih, wangi, dan dirawat mekanik internal kami. Tersedia paket sewa motor harian mulai Rp90.000/hari serta rental mobil lepas kunci atau dengan driver berpengalaman mulai Rp300.000/hari.',
   motorbikes: [
-    { name: 'Honda Beat', transmission: 'Matic', power: 110, rate: 'Mulai Rp75.000' },
-    { name: 'Honda Scoopy', transmission: 'Matic', power: 110, rate: 'Mulai Rp85.000' },
-    { name: 'Honda Vario 125', transmission: 'Matic', power: 125, rate: 'Mulai Rp95.000' },
-    { name: 'Yamaha Aerox 155', transmission: 'Matic', power: 155, rate: 'Mulai Rp130.000' },
-    { name: 'Yamaha NMAX 155', transmission: 'Matic', power: 155, rate: 'Mulai Rp135.000' },
-    { name: 'Honda PCX 160', transmission: 'Matic', power: 160, rate: 'Mulai Rp145.000' },
+    { name: 'Honda Beat', transmission: 'Matic', power: 110, rate: 'Mulai Rp90.000' },
+    { name: 'Honda Scoopy', transmission: 'Matic', power: 110, rate: 'Mulai Rp95.000' },
+    { name: 'Honda Vario 125', transmission: 'Matic', power: 125, rate: 'Mulai Rp105.000' },
+    { name: 'Yamaha Aerox 155', transmission: 'Matic', power: 155, rate: 'Mulai Rp140.000' },
+    { name: 'Yamaha NMAX 155', transmission: 'Matic', power: 155, rate: 'Mulai Rp145.000' },
+    { name: 'Honda PCX 160', transmission: 'Matic', power: 160, rate: 'Mulai Rp155.000' },
   ],
   items: [
-    { name: 'Daihatsu Ayla', driver: 'Opsional', seats: 5, power: 998, rate: 'Mulai Rp[...]/hari' },
-    { name: 'Honda Brio', driver: 'Opsional', seats: 5, power: 1199, rate: 'Mulai Rp[...]/hari' },
-    { name: 'Daihatsu Sigra', driver: 'Opsional', seats: 7, power: 998, rate: 'Mulai Rp[...]/hari' },
-    { name: 'Daihatsu Xenia New', driver: 'Opsional', seats: 7, power: 1329, rate: 'Mulai Rp[...]/hari' },
-    { name: 'Honda Mobilio', driver: 'Opsional', seats: 7, power: 1496, rate: 'Mulai Rp[...]/hari' },
-    { name: 'Suzuki Ertiga', driver: 'Opsional', seats: 7, power: 1462, rate: 'Mulai Rp[...]/hari' },
+    { name: 'Daihatsu Ayla', driver: 'Opsional', seats: 5, power: 998, rate: 'Mulai Rp300.000' },
+    { name: 'Honda Brio', driver: 'Opsional', seats: 5, power: 1199, rate: 'Mulai Rp325.000' },
+    { name: 'Daihatsu Sigra', driver: 'Opsional', seats: 7, power: 998, rate: 'Mulai Rp350.000' },
+    { name: 'Daihatsu Xenia New', driver: 'Opsional', seats: 7, power: 1329, rate: 'Mulai Rp375.000' },
+    { name: 'Honda Mobilio', driver: 'Opsional', seats: 7, power: 1496, rate: 'Mulai Rp400.000' },
+    { name: 'Suzuki Ertiga', driver: 'Opsional', seats: 7, power: 1462, rate: 'Mulai Rp400.000' },
   ],
   carPackages: [
-    { label: 'Lepas Kunci (12 / 24 jam)', rate: 'Mulai Rp[...]/hari', note: 'Syarat identitas sah & verifikasi' },
-    { label: 'Mobil + Driver (12 jam / Fullday)', rate: 'Mulai Rp[...]/paket', note: 'Supir berpengalaman area Jawa Timur' },
-    { label: 'Charter Elf & Hiace Commuter', rate: 'Mulai Rp[...]/paket', note: 'Ideal untuk rombongan & wisata' },
+    { label: 'Lepas Kunci (12 / 24 jam)', rate: 'Mulai Rp300.000/hari', note: 'Syarat identitas sah & verifikasi' },
+    { label: 'Mobil + Driver (12 jam / Fullday)', rate: 'Mulai Rp450.000/paket', note: 'Supir berpengalaman area Jawa Timur' },
+    { label: 'Charter Elf & Hiace Commuter', rate: 'Mulai Rp1.200.000/paket', note: 'Ideal untuk rombongan & wisata' },
   ],
   extra: {
     title: 'Elf New Hiace Commuter plus supir',
-    text: 'Untuk rombongan keluarga, sekolah, atau perjalanan dinas perusahaan. Kapasitas lega dengan tarif mulai Rp[...]/paket dan jadwal fleksibel.',
+    text: 'Untuk rombongan keluarga, sekolah, atau perjalanan dinas perusahaan. Kapasitas lega dengan tarif mulai Rp1.200.000/paket dan jadwal fleksibel.',
   },
 };
 
@@ -82,7 +82,7 @@ export const services = {
     {
       icon: 'car',
       title: 'Rental mobil & sewa motor',
-      text: 'Tersedia sewa motor harian/mingguan mulai 75K dan rental mobil lepas kunci atau plus driver.',
+      text: 'Tersedia sewa motor harian/mingguan mulai 90K dan rental mobil lepas kunci atau plus driver mulai Rp300rb.',
     },
     {
       icon: 'house',
@@ -108,7 +108,7 @@ export const quickTerms = {
   items: [
     {
       title: 'Identitas penyewa sah',
-      text: 'Menunjukkan e-KTP asli yang masih berlaku serta SIM C (untuk motor) atau SIM A (untuk mobil lepas kunci) serta verifikasi tambahan jika diperlukan [...].',
+      text: 'Menunjukkan e-KTP asli yang masih berlaku serta SIM C (untuk motor) atau SIM A (untuk mobil lepas kunci), serta verifikasi tambahan jika diperlukan.',
     },
     {
       title: 'Pilihan lepas kunci vs driver',
@@ -116,7 +116,7 @@ export const quickTerms = {
     },
     {
       title: 'Konfirmasi jadwal & titik temu',
-      text: 'Kirimkan jadwal kedatangan atau alamat antar ke WhatsApp resmi 0851-6368-1922 minimal [2 jam] sebelum serah terima agar unit siap tepat waktu.',
+      text: 'Kirimkan jadwal kedatangan atau alamat antar ke WhatsApp resmi 0851-6368-1922 minimal 2 jam sebelum serah terima agar unit siap tepat waktu.',
     },
   ],
 };
@@ -174,7 +174,7 @@ export const testimonials = {
 export const tour = {
   eyebrow: 'Layanan wisata dari Madiun',
   title: 'Perjalanan wisata & rombongan lebih nyaman bersama DRTRANS',
-  text: 'Paket perjalanan wisata keluarga, sekolah, perusahaan, atau rombongan dengan dukungan MPV maupun Elf New Hiace Commuter. Rute dan jadwal fleksibel dengan penawaran tarif terbaik [...].',
+  text: 'Paket perjalanan wisata keluarga, sekolah, perusahaan, atau rombongan dengan dukungan MPV maupun Elf New Hiace Commuter. Rute dan jadwal fleksibel dengan penawaran tarif terbaik.',
   destinations: [
     { name: 'Yogyakarta', text: 'Paket wisata dari Madiun ke berbagai destinasi populer Yogyakarta.' },
     { name: 'Bali', text: 'Paket wisata dari Madiun ke berbagai destinasi wisata Bali.' },
@@ -200,7 +200,7 @@ export const faq = {
     {
       question: 'Berapa tarif sewa motor dan rental mobil di DRTRANS.ID?',
       answer:
-        'Sewa motor matic mulai Rp75.000/hari (Honda Beat, Scoopy, Vario 125, hingga NMAX/PCX 160). Untuk rental mobil lepas kunci atau plus supir, tarif mulai Rp[...]/hari sesuai tipe unit dan durasi pemakaian.',
+        'Sewa motor matic mulai Rp90.000/hari (Honda Beat, Scoopy, Vario 125, hingga NMAX/PCX 160). Untuk rental mobil lepas kunci atau plus supir, tarif mulai Rp300.000/hari sesuai tipe unit dan durasi pemakaian.',
     },
     {
       question: 'Bagaimana metode pembayaran yang resmi?',
@@ -210,7 +210,7 @@ export const faq = {
     {
       question: 'Apa syarat utama sewa kendaraan lepas kunci?',
       answer:
-        'Penyewa wajib menunjukkan e-KTP asli dan memiliki SIM yang berlaku (SIM C untuk motor, SIM A untuk mobil) serta melengkapi proses verifikasi singkat [...].',
+        'Penyewa wajib menunjukkan e-KTP asli dan memiliki SIM yang berlaku (SIM C untuk motor, SIM A untuk mobil) serta melengkapi proses verifikasi singkat.',
     },
     {
       question: 'Apakah tersedia mobil transmisi otomatis (matic)?',

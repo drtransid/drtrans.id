@@ -8,9 +8,11 @@ import Services from '@/components/home/Services.astro';
 import Testimonials from '@/components/home/Testimonials.astro';
 import Tour from '@/components/home/Tour.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { faq } from '@/config/home';
+import { faqPageSchema } from '@/lib/schema';
 ---
 
-<BaseLayout>
+<BaseLayout structuredData={faqPageSchema(faq.items)}>
   <Hero />
   <Fleet />
   <Features />

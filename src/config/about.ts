@@ -30,7 +30,7 @@ export const about = {
       title: 'Cepat di titik kedatangan, fleksibel untuk dalam maupun luar kota',
       paragraphs: [
         'Kami memahami penumpang yang baru turun di Stasiun Madiun atau Terminal Purbaya Madiun maupun tamu yang menunggu di hotel membutuhkan kendaraan tanpa proses berbelit. Tim pengantaran kami siap mengantar motor atau mobil langsung ke titik temu di wilayah Kota dan Kabupaten Madiun.',
-        'Anda dapat memilih sewa motor matic mulai Rp75.000 per hari untuk mobilitas ringkas, rental mobil lepas kunci atau dengan driver berpengalaman mulai Rp[...]/hari, hingga charter Elf New Hiace Commuter untuk perjalanan wisata rombongan ke Yogyakarta, Bandung, Bali, maupun Lombok.',
+        'Anda dapat memilih sewa motor matic mulai Rp90.000 per hari untuk mobilitas ringkas, rental mobil lepas kunci atau dengan driver berpengalaman mulai Rp300.000/hari, hingga charter Elf New Hiace Commuter untuk perjalanan wisata rombongan ke Yogyakarta, Bandung, Bali, maupun Lombok.',
       ],
     },
   ],
