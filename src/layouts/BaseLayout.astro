@@ -2,6 +2,7 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import CookieConsent from '@/components/chrome/CookieConsent.astro';
+import PwaPrompt from '@/components/chrome/PwaPrompt.astro';
 import SiteFooter from '@/components/chrome/SiteFooter.astro';
 import SiteHeader from '@/components/chrome/SiteHeader.astro';
 import { siteConfig } from '@/config/site';
@@ -55,10 +56,18 @@ const schema = structuredData ?? websiteSchema();
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#fbf8f9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f2ff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="DRTRANS" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/assets/aistudio/favicon_1c1a2659.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/aistudio/favicon-48_7f054c13.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/aistudio/favicon-32_8c31e6fd.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/aistudio/favicon-16_0976d7fb.png" />
+    <link rel="apple-touch-icon" href="/assets/aistudio/apple-touch-icon_f28537ea.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonical} />
     {prevUrl && <link rel="prev" href={new URL(prevUrl, siteConfig.siteUrl).toString()} />}
     {nextUrl && <link rel="next" href={new URL(nextUrl, siteConfig.siteUrl).toString()} />}
@@ -146,5 +155,6 @@ const schema = structuredData ?? websiteSchema();
     </main>
     <SiteFooter closing={closing} />
     {siteConfig.cookieConsent.enabled && <CookieConsent />}
+    <PwaPrompt />
   </body>
 </html>
