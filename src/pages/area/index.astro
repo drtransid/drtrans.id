@@ -128,15 +128,26 @@ const description =
             {siteConfig.business.phoneDisplay}. Pembayaran resmi {siteConfig.business.legalName} hanya melalui rekening BCA dan BRI.
           </p>
         </div>
-        <a
-          class="btn btn-primary shrink-0"
-          href={siteConfig.business.whatsapp}
-          target="_blank"
-          rel="noopener"
-        >
-          <Icon name="social-whatsapp" class="size-4" />
-          Booking via WhatsApp
-        </a>
+        <div class="flex flex-wrap gap-3">
+          <a
+            class="btn btn-primary shrink-0"
+            href={siteConfig.business.whatsapp}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="social-whatsapp" class="size-4" />
+            Booking via WhatsApp
+          </a>
+          <a
+            class="btn btn-ghost shrink-0"
+            href={siteConfig.business.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="map-pin" class="size-4 text-accent-ink" />
+            Lokasi Google Maps
+          </a>
+        </div>
       </div>
     </div>
   </section>

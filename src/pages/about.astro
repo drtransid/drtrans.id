@@ -91,6 +91,29 @@ const { business } = siteConfig;
           <p class="mt-6 text-sm font-medium text-ink">
             Entitas Resmi: {business.legalName}
           </p>
+          <p class="mt-2 text-sm text-muted">
+            Titik Google Maps:{' '}
+            <a
+              class="link font-medium text-ink"
+              href={business.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {business.mapsName}
+            </a>
+          </p>
+          <div class="mt-6">
+            <a
+              class="btn btn-ghost btn-sm"
+              href={business.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="map-pin" class="size-4 text-accent-ink" />
+              Buka Lokasi di Google Maps
+              <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
+            </a>
+          </div>
         </div>
         <ul class="grid gap-4 sm:grid-cols-2">
           {about.coverage.points.map((point) => (

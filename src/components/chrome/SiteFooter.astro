@@ -86,9 +86,17 @@ const year = new Date().getFullYear();
             {business.phoneDisplay}
           </a>
         </li>
-        <li class="inline-flex items-center gap-2.5">
-          <Icon name="map-pin" class="size-3.5 text-muted" />
-          {business.location}
+        <li>
+          <a
+            class="footer-link inline-flex items-center gap-2.5"
+            href={business.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={business.mapsName}
+          >
+            <Icon name="map-pin" class="size-3.5 shrink-0 text-accent-ink" />
+            <span>{business.location} (Google Maps)</span>
+          </a>
         </li>
         <li class="text-muted">{business.payments}</li>
       </ul>

@@ -9,8 +9,15 @@ const business = {
   legalName: siteConfig.business.legalName,
   description: siteConfig.description,
   url: siteConfig.siteUrl,
+  hasMap: siteConfig.business.mapsUrl,
+  sameAs: [siteConfig.business.mapsUrl],
   telephone: siteConfig.business.phone,
   priceRange: 'Mulai Rp75.000',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: siteConfig.business.geo.latitude,
+    longitude: siteConfig.business.geo.longitude,
+  },
   areaServed: [
     { '@type': 'City', name: 'Kota Madiun' },
     { '@type': 'AdministrativeArea', name: 'Kabupaten Madiun' },

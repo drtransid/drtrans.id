@@ -1,10 +1,23 @@
 ---
+import Icon from '@/components/ui/Icon.astro';
 import SectionHead from '@/components/ui/SectionHead.astro';
 import { testimonials } from '@/config/home';
+import { siteConfig } from '@/config/site';
 ---
 
 <section id="ulasan" class="shell mt-28 sm:mt-36" aria-labelledby="ulasan-title">
-  <SectionHead id="ulasan-title" eyebrow={testimonials.eyebrow} title={testimonials.title} text={testimonials.text} />
+  <SectionHead id="ulasan-title" eyebrow={testimonials.eyebrow} title={testimonials.title} text={testimonials.text}>
+    <a
+      class="btn btn-ghost btn-sm"
+      href={siteConfig.business.mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="map-pin" class="size-4 text-accent-ink" />
+      Lihat di Google Maps
+      <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
+    </a>
+  </SectionHead>
 
   <ul class="mt-10 grid gap-5 sm:grid-cols-3">
     {testimonials.items.map((item) => (

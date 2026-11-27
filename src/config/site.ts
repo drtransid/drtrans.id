@@ -27,6 +27,13 @@ export const siteConfig = {
     city: 'Madiun',
     region: 'Jawa Timur',
     country: 'ID',
+    mapsName: 'Rental / Sewa Motor & Mobil Madiun DR TRANS',
+    mapsUrl:
+      'https://www.google.com/maps/place/Rental+%2F+Sewa+Motor+%26+Mobil+Madiun+DR+TRANS/@-7.6571418,111.4298969,13z/data=!4m10!1m2!2m1!1sdrtrans.id+maps!3m6!1s0x2e79bd59c4307ea3:0x169e205b3e877be!8m2!3d-7.6571418!4d111.5019947!15sCg9kcnRyYW5zLmlkIG1hcHOSARFjYXJfcmVudGFsX2FnZW5jeeABAA!16s%2Fg%2F11s17fpts9?entry=ttu&g_ep=EgoyMDI2MTEyMy4wIKXMDSoASAFQAw%3D%3D',
+    geo: {
+      latitude: -7.6571418,
+      longitude: 111.5019947,
+    },
     phoneDisplay: '0851-6368-1922',
     phone: `+${whatsappNumber}`,
     whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
