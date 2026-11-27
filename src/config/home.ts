@@ -124,25 +124,49 @@ export const quickTerms = {
 export const testimonials = {
   eyebrow: 'Ulasan pelanggan',
   title: 'Pengalaman pengguna layanan DRTRANS.ID',
-  text: 'Catatan ulasan pelanggan sebelum rilis — ganti placeholder di bawah dengan kutipan ulasan terverifikasi dari Google Maps atau WhatsApp pelanggan Anda.',
+  text: 'Ulasan asli pelanggan DRTRANS di Google Maps — rating 4,3 dari 42 ulasan.',
   items: [
     {
+      rating: 5,
       quote:
-        '"[Isi kutipan ulasan pelanggan yang puas dengan ketepatan waktu pengantaran motor di area penjemputan Stasiun Madiun dan kebersihan helm/unit.]"',
-      name: '[Nama Pelanggan 1]',
-      context: '[Sewa Motor Stasiun Madiun · Bulan Tahun]',
+        'Sangat baik dalam segi layanan. Mobil bersih, terawat, dan baru.',
+      name: 'Brandal Lokajaya',
+      context: 'Rental Mobil · Oktober 2026',
     },
     {
+      rating: 5,
       quote:
-        '"[Isi kutipan ulasan penyewa mobil keluarga atau lepas kunci mengenai kondisi AC dingin, unit wangi, dan kejelasan tarif via transfer resmi BCA/BRI.]"',
-      name: '[Nama Pelanggan 2]',
-      context: '[Rental Mobil Madiun · Bulan Tahun]',
+        'Pelayanan sangat cepat, ternyata tersedia layanan antar jemput kendaraan. Good job, next time sewa motor di DR TRANS lagi.',
+      name: 'Sulih RBP',
+      context: 'Sewa Motor · Oktober 2026',
     },
     {
+      rating: 5,
       quote:
-        '"[Isi kutipan ulasan rombongan/dinas tentang keramahan driver, armada Hiace/MPV terawat, atau penjemputan di Terminal Purbaya Madiun.]"',
-      name: '[Nama Pelanggan 3]',
-      context: '[Terminal Purbaya Madiun / Wisata · Bulan Tahun]',
+        'Pelayanan bagus, fast respon, motor bersih, harga terjangkau. Yang mau ke Madiun mau nyewa motor bisa langsung ke DR TRANS aja.',
+      name: 'Siti Chopsyoh',
+      context: 'Sewa Motor · Juli 2025',
+    },
+    {
+      rating: 5,
+      quote:
+        'Pelayanannya TOP. Motornya terawat, bersih, dan tahun motornya masih muda. Prosesnya ga ribet & tarif sewanya murah. Recommended pokoknya.',
+      name: 'Yanyan Pribadi',
+      context: 'Sewa Motor · Juli 2023',
+    },
+    {
+      rating: 5,
+      quote:
+        'Pelayanannya top, bisa antar jemput sampai lokasi, biaya sewa murah, dan kendaraannya terawat. Persyaratannya juga mudah. Sangat membantu untuk anak rantau seperti saya.',
+      name: 'Dream CR',
+      context: 'Sewa Motor · Oktober 2023',
+    },
+    {
+      rating: 5,
+      quote:
+        'Adminnya ramah banget, fast respon juga, tanya-tanya dijawab semua. Antar jemput motornya juga ramah banget, harga oke, pelayanan oke, prosedurnya gampang.',
+      name: 'Lailatul Nurhayati',
+      context: 'Sewa Motor · April 2024',
     },
   ],
 };
