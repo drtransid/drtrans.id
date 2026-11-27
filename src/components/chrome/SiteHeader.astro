@@ -6,7 +6,8 @@ import Logomark from '@/components/ui/Logomark.astro';
 import { navigation, siteConfig } from '@/config/site';
 
 const path = Astro.url.pathname;
-const current = (href: string) => (path === href ? 'page' : href !== '/' && path.startsWith(href) ? 'true' : undefined);
+const current = (href: string) =>
+  path === href ? 'page' : href !== '/' && !href.startsWith('/#') && path.startsWith(href) ? 'true' : undefined;
 
 const workEntries = (await getCollection('work', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
@@ -26,18 +27,56 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
     <nav aria-label="Main" class="ml-auto hidden md:block">
       <ul class="flex items-center gap-1">
         {navigation.map((link) =>
-          link.href === '/work/' ? (
-            <li class="mega-item relative" data-mega-root>
+          link.children ? (
+            <li class="relative" data-dropdown-root>
+              <button
+                type="button"
+                class="nav-link gap-1.5"
+                aria-expanded="false"
+                aria-controls="layanan-submenu"
+                data-dropdown-trigger
+              >
+                <span>{link.label}</span>
+                <Icon name="chevron-down" class="dropdown-chevron size-3.5 text-muted" />
+              </button>
+
+              <div
+                id="layanan-submenu"
+                role="region"
+                aria-label="Submenu Layanan Beranda"
+                hidden
+                class="submenu-panel absolute top-full left-0 z-50 mt-2 rounded-panel border border-line bg-surface p-2 shadow-card"
+                data-dropdown-panel
+              >
+                <ul class="grid gap-0.5">
+                  {link.children.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        class="block rounded-lg px-3 py-2 transition-colors hover:bg-sunken"
+                      >
+                        <span class="block text-sm font-medium text-ink">{item.label}</span>
+                        {item.description && (
+                          <span class="mt-0.5 block text-xs text-muted">{item.description}</span>
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ) : link.href === '/work/' ? (
+            <li class="relative" data-dropdown-root>
               <button
                 type="button"
                 class="nav-link gap-1.5"
                 aria-expanded="false"
                 aria-controls="area-mega-menu"
                 aria-current={current('/work/')}
-                data-mega-trigger
+                data-dropdown-trigger
               >
                 <span>{link.label}</span>
-                <Icon name="chevron-down" class="mega-chevron size-3.5 text-muted" />
+                <Icon name="chevron-down" class="dropdown-chevron size-3.5 text-muted" />
               </button>
 
               <div
@@ -46,7 +85,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 aria-label="Menu Area Stasiun dan Terminal Madiun"
                 hidden
                 class="mega-panel absolute top-full right-0 z-50 mt-2 rounded-panel border border-line bg-surface p-4 shadow-card"
-                data-mega-panel
+                data-dropdown-panel
               >
                 <div class="grid grid-cols-2 gap-4">
                   <div>
@@ -176,14 +215,33 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
           </a>
         </li>
         {navigation.map((link) =>
-          link.href === '/work/' ? (
+          link.children ? (
             <li class="border-b border-line">
-              <details class="mobile-area-group">
+              <details class="mobile-sub-group">
                 <summary class="mobile-link cursor-pointer list-none justify-between border-b-0">
                   <span>{link.label}</span>
-                  <Icon name="chevron-down" class="mobile-area-chevron size-5 text-muted" />
+                  <Icon name="chevron-down" class="mobile-sub-chevron size-5 text-muted" />
                 </summary>
-                <div class="grid gap-2 pb-4 pl-2">
+                <div class="grid gap-1.5 pb-4 pl-2">
+                  {link.children.map((item) => (
+                    <a
+                      href={item.href}
+                      class="rounded-lg px-3 py-2 text-sm text-body hover:bg-sunken hover:text-ink"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            </li>
+          ) : link.href === '/work/' ? (
+            <li class="border-b border-line">
+              <details class="mobile-sub-group">
+                <summary class="mobile-link cursor-pointer list-none justify-between border-b-0">
+                  <span>{link.label}</span>
+                  <Icon name="chevron-down" class="mobile-sub-chevron size-5 text-muted" />
+                </summary>
+                <div class="grid gap-1.5 pb-4 pl-2">
                   <a href="/work/" class="rounded-lg px-3 py-2 text-sm font-semibold text-accent-ink hover:bg-sunken">
                     Semua Panduan Area &rarr;
                   </a>
@@ -242,49 +300,62 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
   });
   matchMedia('(min-width: 48rem)').addEventListener('change', (event) => event.matches && menu?.close());
 
-  const megaRoot = document.querySelector<HTMLElement>('[data-mega-root]');
-  const megaTrigger = document.querySelector<HTMLButtonElement>('[data-mega-trigger]');
-  const megaPanel = document.querySelector<HTMLElement>('[data-mega-panel]');
+  const dropdownRoots = Array.from(document.querySelectorAll<HTMLElement>('[data-dropdown-root]'));
 
-  if (megaRoot && megaTrigger && megaPanel) {
+  const setDropdown = (root: HTMLElement, open: boolean) => {
+    const trigger = root.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+    const panel = root.querySelector<HTMLElement>('[data-dropdown-panel]');
+    if (!trigger || !panel) return;
+    trigger.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+  };
+
+  const closeAllDropdowns = (except?: HTMLElement) => {
+    dropdownRoots.forEach((root) => {
+      if (root !== except) setDropdown(root, false);
+    });
+  };
+
+  dropdownRoots.forEach((root) => {
+    const trigger = root.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+    const panel = root.querySelector<HTMLElement>('[data-dropdown-panel]');
+    if (!trigger || !panel) return;
+
     let closeTimer: number | undefined;
 
-    const setMegaOpen = (open: boolean) => {
-      megaTrigger.setAttribute('aria-expanded', String(open));
-      megaPanel.hidden = !open;
-    };
-
-    megaTrigger.addEventListener('click', () => {
-      const isOpen = megaTrigger.getAttribute('aria-expanded') === 'true';
-      setMegaOpen(!isOpen);
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      closeAllDropdowns(root);
+      setDropdown(root, !isOpen);
     });
 
-    megaRoot.addEventListener('mouseenter', () => {
+    root.addEventListener('mouseenter', () => {
       if (closeTimer) window.clearTimeout(closeTimer);
-      setMegaOpen(true);
+      closeAllDropdowns(root);
+      setDropdown(root, true);
     });
 
-    megaRoot.addEventListener('mouseleave', () => {
-      closeTimer = window.setTimeout(() => setMegaOpen(false), 120);
+    root.addEventListener('mouseleave', () => {
+      closeTimer = window.setTimeout(() => setDropdown(root, false), 120);
     });
 
-    megaRoot.addEventListener('keydown', (event) => {
+    root.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        setMegaOpen(false);
-        megaTrigger.focus();
+        setDropdown(root, false);
+        trigger.focus();
       }
     });
 
-    document.addEventListener('click', (event) => {
-      if (!megaRoot.contains(event.target as Node)) {
-        setMegaOpen(false);
-      }
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setDropdown(root, false));
     });
+  });
 
-    megaPanel.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => setMegaOpen(false));
-    });
-  }
+  document.addEventListener('click', (event) => {
+    if (!dropdownRoots.some((root) => root.contains(event.target as Node))) {
+      closeAllDropdowns();
+    }
+  });
 </script>
 
 <style>
@@ -322,22 +393,27 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
     background: var(--sunken);
   }
 
+  .submenu-panel {
+    width: min(19rem, calc(100vw - 2rem));
+    min-width: 17.5rem;
+  }
+
   .mega-panel {
     width: min(32rem, calc(100vw - 2rem));
     min-width: min(28rem, calc(100vw - 2rem));
   }
 
-  .mega-chevron,
-  .mobile-area-chevron {
+  .dropdown-chevron,
+  .mobile-sub-chevron {
     transition: transform 200ms var(--ease-out-expo);
   }
 
-  .nav-link[aria-expanded='true'] .mega-chevron,
-  .mobile-area-group[open] .mobile-area-chevron {
+  .nav-link[aria-expanded='true'] .dropdown-chevron,
+  .mobile-sub-group[open] .mobile-sub-chevron {
     transform: rotate(180deg);
   }
 
-  .mobile-area-group summary::-webkit-details-marker {
+  .mobile-sub-group summary::-webkit-details-marker {
     display: none;
   }
 

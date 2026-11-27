@@ -46,7 +46,7 @@ export const about = {
       {
         number: '02',
         title: 'Keamanan & asuransi penuh',
-        text: 'Setiap armada mobil dilengkapi GPS pelacak tanpa biaya tambahan serta perlindungan asuransi demi ketenangan penyewa.',
+        text: 'Setiap armada mobil dilengkapi GPS aktif yang selalu terpantau serta perlindungan asuransi demi ketenangan dan keamanan penyewa.',
       },
       {
         number: '03',

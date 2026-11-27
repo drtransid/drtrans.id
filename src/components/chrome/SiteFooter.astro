@@ -2,7 +2,7 @@
 import Icon from '@/components/ui/Icon.astro';
 import Logomark from '@/components/ui/Logomark.astro';
 import { closing } from '@/config/home';
-import { legalLinks, navigation, siteConfig } from '@/config/site';
+import { footerLinks, legalLinks, siteConfig } from '@/config/site';
 
 interface Props {
   closing?: boolean;
@@ -61,7 +61,7 @@ const year = new Date().getFullYear();
             Beranda
           </a>
         </li>
-        {navigation.map((link) => (
+        {footerLinks.map((link) => (
           <li>
             <a class="footer-link" href={link.href}>
               {link.label}
@@ -108,7 +108,7 @@ const year = new Date().getFullYear();
         {siteConfig.cookieConsent.enabled && (
           <li>
             <button type="button" class="footer-link text-left" data-cookie-preferences data-needs-js>
-              Cookie preferences
+              Preferensi Cookie
             </button>
           </li>
         )}

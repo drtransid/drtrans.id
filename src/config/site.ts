@@ -1,6 +1,8 @@
 export interface NavLink {
   label: string;
   href: string;
+  description?: string;
+  children?: NavLink[];
 }
 
 const whatsappNumber = '6285163681922';
@@ -10,7 +12,7 @@ export const siteConfig = {
   name: 'drtrans.id',
   title: 'Jasa Sewa Motor, Mobil Madiun Mulai 75K - DRTRANS.ID',
   description:
-    'DRTRANS.ID melayani rental motor, mobil, dan Elf Hiace plus supir di Madiun, Jawa Timur. Unit bersih, GPS gratis, kendaraan diasuransikan, respon cepat 24 jam.',
+    'DRTRANS.ID melayani rental motor mulai 75K, sewa mobil lepas kunci/supir, dan Elf Hiace di Madiun. Siap antar ke Stasiun & Terminal Madiun 24 jam, GPS aktif & asuransi penuh.',
   siteUrl: 'https://www.drtrans.id',
   language: 'id',
   locale: 'id_ID',
@@ -46,17 +48,36 @@ export const siteConfig = {
   },
 };
 
+export const anchorLinks: NavLink[] = [
+  { label: 'Semua Armada', href: '/#armada', description: 'Motor, mobil & Elf Hiace' },
+  { label: 'Motor (Roda Dua)', href: '/#armada-motor', description: 'Beat, Scoopy, Vario, NMAX mulai 75K' },
+  { label: 'Mobil (Roda Empat)', href: '/#armada-mobil', description: 'Lepas kunci atau plus driver' },
+  { label: 'Keunggulan & Layanan', href: '/#layanan', description: 'Door to door, GPS & CS 24 jam' },
+  { label: 'Paket Wisata', href: '/#wisata', description: 'Yogyakarta, Bali, Bandung & Lombok' },
+  { label: 'FAQ', href: '/#faq', description: 'Syarat sewa, pembayaran & asuransi' },
+];
+
 export const navigation: NavLink[] = [
+  {
+    label: 'Layanan',
+    href: '/#armada',
+    children: anchorLinks,
+  },
+  { label: 'Area', href: '/work/' },
+  { label: 'Tentang Kami', href: '/about/' },
+];
+
+export const footerLinks: NavLink[] = [
   { label: 'Armada', href: '/#armada' },
   { label: 'Layanan', href: '/#layanan' },
-  { label: 'Area', href: '/work/' },
+  { label: 'Area Madiun', href: '/work/' },
   { label: 'Tentang Kami', href: '/about/' },
   { label: 'Wisata', href: '/#wisata' },
   { label: 'FAQ', href: '/#faq' },
 ];
 
 export const legalLinks: NavLink[] = [
-  { label: 'Privacy', href: '/privacy/' },
-  { label: 'Terms', href: '/terms/' },
-  { label: 'Cookies', href: '/cookies/' },
+  { label: 'Kebijakan Privasi', href: '/privacy/' },
+  { label: 'Syarat & Ketentuan', href: '/terms/' },
+  { label: 'Kebijakan Cookie', href: '/cookies/' },
 ];
