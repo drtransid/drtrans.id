@@ -12,9 +12,10 @@ const business = {
   telephone: siteConfig.business.phone,
   priceRange: 'Mulai Rp75.000',
   areaServed: [
-    { '@type': 'City', name: siteConfig.business.city },
+    { '@type': 'City', name: 'Kota Madiun' },
+    { '@type': 'AdministrativeArea', name: 'Kabupaten Madiun' },
     { '@type': 'Place', name: 'Stasiun Madiun' },
-    { '@type': 'Place', name: 'Terminal Purboyo Madiun' },
+    { '@type': 'Place', name: 'Terminal Purbaya Madiun', alternateName: 'Terminal Purboyo Madiun' },
   ],
   address: {
     '@type': 'PostalAddress',
@@ -66,7 +67,7 @@ export const aboutPageSchema = () => ({
       url: absolute('/about/'),
       name: `Tentang ${siteConfig.business.name} — ${siteConfig.business.legalName}`,
       description:
-        'Profil PT. AZZAHRA JAYA TRANSPORTATION (DRTRANS.ID), penyedia jasa sewa motor, mobil, dan Elf Hiace terpercaya di Madiun dengan GPS gratis dan asuransi penuh.',
+        'Profil PT. AZZAHRA JAYA TRANSPORTATION (DRTRANS.ID), penyedia jasa rental mobil dan sewa motor terpercaya di Madiun dengan GPS aktif dan asuransi penuh.',
       inLanguage: siteConfig.language,
       isPartOf: { '@id': absolute('/#website') },
       mainEntity: { '@id': absolute('/#business') },
@@ -78,30 +79,30 @@ export const aboutPageSchema = () => ({
   ],
 });
 
-export const workIndexSchema = () => ({
+export const areaIndexSchema = () => ({
   '@context': 'https://schema.org',
   '@graph': [
     business,
     websiteNode,
     {
       '@type': 'CollectionPage',
-      '@id': absolute('/work/#page'),
-      url: absolute('/work/'),
-      name: `Layanan Rental Kendaraan Stasiun & Terminal Madiun | ${siteConfig.name}`,
+      '@id': absolute('/area/#page'),
+      url: absolute('/area/'),
+      name: `Area Layanan Rental Mobil & Sewa Motor Madiun | ${siteConfig.name}`,
       description:
-        'Panduan lengkap layanan sewa motor dan mobil di dekat Stasiun Madiun dan Terminal Purboyo Madiun oleh DRTRANS.ID.',
+        'Cakupan layanan rental mobil dan sewa motor DRTRANS.ID di Kota dan Kabupaten Madiun: pusat kota, hotel, perkantoran, Stasiun Madiun, Terminal Purbaya, dan rute sekitar.',
       inLanguage: siteConfig.language,
       isPartOf: { '@id': absolute('/#website') },
       about: { '@id': absolute('/#business') },
     },
     breadcrumbList([
       { name: 'Beranda', path: '/' },
-      { name: 'Panduan Area', path: '/work/' },
+      { name: 'Area Layanan', path: '/area/' },
     ]),
   ],
 });
 
-interface WorkDetailSchemaInput {
+interface AreaDetailSchemaInput {
   title: string;
   description: string;
   path: string;
@@ -109,13 +110,13 @@ interface WorkDetailSchemaInput {
   serviceType: string;
 }
 
-export const workDetailSchema = ({
+export const areaDetailSchema = ({
   title,
   description,
   path,
   targetLocation,
   serviceType,
-}: WorkDetailSchemaInput) => ({
+}: AreaDetailSchemaInput) => ({
   '@context': 'https://schema.org',
   '@graph': [
     business,
@@ -135,7 +136,7 @@ export const workDetailSchema = ({
     },
     breadcrumbList([
       { name: 'Beranda', path: '/' },
-      { name: 'Panduan Area', path: '/work/' },
+      { name: 'Area Layanan', path: '/area/' },
       { name: title, path },
     ]),
   ],

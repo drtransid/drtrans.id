@@ -10,9 +10,9 @@ const whatsappMessage = 'Halo DRTRANS.ID, saya ingin booking kendaraan.';
 
 export const siteConfig = {
   name: 'drtrans.id',
-  title: 'Jasa Sewa Motor, Mobil Madiun Mulai 75K - DRTRANS.ID',
+  title: 'Rental Mobil & Sewa Motor Madiun Mulai 75K – DRTRANS.ID',
   description:
-    'DRTRANS.ID melayani rental motor mulai 75K, sewa mobil lepas kunci/supir, dan Elf Hiace di Madiun. Siap antar ke Stasiun & Terminal Madiun 24 jam, GPS aktif & asuransi penuh.',
+    'Rental mobil Madiun lepas kunci/supir & sewa motor mulai 75K dari PT. Azzahra Jaya Transportation. Antar ke pusat kota, Stasiun & Terminal Purbaya 24 jam.',
   siteUrl: 'https://www.drtrans.id',
   language: 'id',
   locale: 'id_ID',
@@ -22,7 +22,7 @@ export const siteConfig = {
   business: {
     name: 'DRTRANS.ID',
     legalName: 'PT. AZZAHRA JAYA TRANSPORTATION',
-    tagline: 'Rental Kendaraan Madiun',
+    tagline: 'Rental Mobil & Sewa Motor Madiun',
     location: 'Madiun, Jawa Timur',
     city: 'Madiun',
     region: 'Jawa Timur',
@@ -30,13 +30,13 @@ export const siteConfig = {
     phoneDisplay: '0851-6368-1922',
     phone: `+${whatsappNumber}`,
     whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
-    payments: 'Transfer bank BCA dan BRI',
+    payments: 'Transfer bank resmi BCA dan BRI',
   },
 
   /** The pill above the homepage headline. Set `enabled: false` to remove it. */
   availability: {
     enabled: true,
-    label: 'Unit terbatas, booking sekarang',
+    label: 'Armada siap antar 24 jam di Madiun',
   },
 
   /** The button at the end of the header and in the mobile menu. */
@@ -50,11 +50,13 @@ export const siteConfig = {
 
 export const anchorLinks: NavLink[] = [
   { label: 'Semua Armada', href: '/#armada', description: 'Motor, mobil & Elf Hiace' },
-  { label: 'Motor (Roda Dua)', href: '/#armada-motor', description: 'Beat, Scoopy, Vario, NMAX mulai 75K' },
-  { label: 'Mobil (Roda Empat)', href: '/#armada-mobil', description: 'Lepas kunci atau plus driver' },
-  { label: 'Keunggulan & Layanan', href: '/#layanan', description: 'Door to door, GPS & CS 24 jam' },
+  { label: 'Sewa Motor (Roda Dua)', href: '/#armada-motor', description: 'Beat, Scoopy, Vario, NMAX mulai 75K' },
+  { label: 'Rental Mobil (Roda Empat)', href: '/#armada-mobil', description: 'Lepas kunci atau plus driver' },
+  { label: 'Keunggulan & Layanan', href: '/#layanan', description: 'Antar lokasi, GPS, asuransi & CS 24 jam' },
+  { label: 'Syarat Singkat', href: '/#syarat', description: 'Dokumen sewa & transfer resmi BCA/BRI' },
+  { label: 'Ulasan Pelanggan', href: '/#ulasan', description: 'Pengalaman penyewa di Madiun' },
   { label: 'Paket Wisata', href: '/#wisata', description: 'Yogyakarta, Bali, Bandung & Lombok' },
-  { label: 'FAQ', href: '/#faq', description: 'Syarat sewa, pembayaran & asuransi' },
+  { label: 'FAQ', href: '/#faq', description: 'Pertanyaan sewa, pembayaran & asuransi' },
 ];
 
 export const navigation: NavLink[] = [
@@ -63,14 +65,14 @@ export const navigation: NavLink[] = [
     href: '/#armada',
     children: anchorLinks,
   },
-  { label: 'Area', href: '/work/' },
+  { label: 'Area', href: '/area/' },
   { label: 'Tentang Kami', href: '/about/' },
 ];
 
 export const footerLinks: NavLink[] = [
   { label: 'Armada', href: '/#armada' },
   { label: 'Layanan', href: '/#layanan' },
-  { label: 'Area Madiun', href: '/work/' },
+  { label: 'Area Madiun', href: '/area/' },
   { label: 'Tentang Kami', href: '/about/' },
   { label: 'Wisata', href: '/#wisata' },
   { label: 'FAQ', href: '/#faq' },

@@ -1,0 +1,20 @@
+---
+import SectionHead from '@/components/ui/SectionHead.astro';
+import { testimonials } from '@/config/home';
+---
+
+<section id="ulasan" class="shell mt-28 sm:mt-36" aria-labelledby="ulasan-title">
+  <SectionHead id="ulasan-title" eyebrow={testimonials.eyebrow} title={testimonials.title} text={testimonials.text} />
+
+  <ul class="mt-10 grid gap-5 sm:grid-cols-3">
+    {testimonials.items.map((item) => (
+      <li class="reveal flex flex-col justify-between rounded-card border border-line bg-surface p-6 sm:p-7">
+        <blockquote class="text-body leading-relaxed">{item.quote}</blockquote>
+        <footer class="mt-6 border-t border-line pt-4">
+          <p class="text-sm font-semibold text-ink">{item.name}</p>
+          <p class="mt-0.5 text-xs text-muted">{item.context}</p>
+        </footer>
+      </li>
+    ))}
+  </ul>
+</section>

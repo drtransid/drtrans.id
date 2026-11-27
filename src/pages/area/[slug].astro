@@ -4,10 +4,10 @@ import Icon from '@/components/ui/Icon.astro';
 import PageHero from '@/components/ui/PageHero.astro';
 import { siteConfig } from '@/config/site';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { workDetailSchema } from '@/lib/schema';
+import { areaDetailSchema } from '@/lib/schema';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('work', ({ data }) => !data.draft);
+  const entries = await getCollection('area', ({ data }) => !data.draft);
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -18,7 +18,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
 
-const allEntries = (await getCollection('work', ({ data: item }) => !item.draft)).sort(
+const allEntries = (await getCollection('area', ({ data: item }) => !item.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
 const relatedEntries = allEntries.filter((item) => item.id !== entry.id).slice(0, 3);
@@ -33,10 +33,10 @@ const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
   title={data.title}
   description={data.description}
   type="article"
-  structuredData={workDetailSchema({
+  structuredData={areaDetailSchema({
     title: data.title,
     description: data.description,
-    path: `/work/${entry.id}/`,
+    path: `/area/${entry.id}/`,
     targetLocation: data.targetLocation,
     serviceType: data.category,
   })}
@@ -45,7 +45,7 @@ const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
     <ol class="flex flex-wrap items-center gap-2">
       <li><a class="hover:text-ink" href="/">Beranda</a></li>
       <li aria-hidden="true">/</li>
-      <li><a class="hover:text-ink" href="/work/">Area Madiun</a></li>
+      <li><a class="hover:text-ink" href="/area/">Area Layanan</a></li>
       <li aria-hidden="true">/</li>
       <li class="text-ink" aria-current="page">{data.targetLocation}</li>
     </ol>
@@ -60,7 +60,7 @@ const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
     <div class="rise mt-8 flex flex-wrap gap-3" style="--rise-step: 3">
       <a class="btn btn-primary" href={bookingUrl} target="_blank" rel="noopener">
         <Icon name="social-whatsapp" class="size-4" />
-        Booking untuk {data.targetLocation}
+        Booking via WhatsApp
       </a>
       <a class="btn btn-ghost" href="/#armada">
         Lihat semua unit
@@ -83,11 +83,11 @@ const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
           <dd class="mt-1 font-semibold text-ink">{data.category}</dd>
         </div>
         <div>
-          <dt class="text-sm text-muted">Tarif / Paket</dt>
+          <dt class="text-sm text-muted">Tarif Mulai Dari</dt>
           <dd class="mt-1 font-semibold text-ink">{data.priceFrom}</dd>
         </div>
         <div>
-          <dt class="text-sm text-muted">Pengantaran</dt>
+          <dt class="text-sm text-muted">Titik Temu</dt>
           <dd class="mt-1 font-semibold text-ink">{data.deliveryInfo}</dd>
         </div>
       </dl>
@@ -106,16 +106,16 @@ const bookingUrl = `${whatsapp.split('?')[0]}?text=${encodeURIComponent(
   </article>
 
   {relatedEntries.length > 0 && (
-    <section class="shell mt-24 sm:mt-32" aria-labelledby="related-work-title">
+    <section class="shell mt-24 sm:mt-32" aria-labelledby="related-area-title">
       <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-line pb-4">
-        <h2 id="related-work-title" class="text-section">Panduan area lainnya</h2>
-        <a class="link text-sm font-medium" href="/work/">Semua panduan area</a>
+        <h2 id="related-area-title" class="text-section">Area layanan lainnya</h2>
+        <a class="link text-sm font-medium" href="/area/">Semua area Madiun</a>
       </div>
       <ul class="mt-8 grid gap-5 sm:grid-cols-3">
         {relatedEntries.map((item) => (
           <li>
             <a
-              href={`/work/${item.id}/`}
+              href={`/area/${item.id}/`}
               class="flex h-full flex-col justify-between rounded-card border border-line bg-surface p-6 transition-colors hover:border-line-strong"
             >
               <div>

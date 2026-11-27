@@ -8,11 +8,11 @@ const path = Astro.url.pathname;
 const current = (href: string) =>
   path === href ? 'page' : href !== '/' && !href.startsWith('/#') && path.startsWith(href) ? 'true' : undefined;
 
-const workEntries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+const areaEntries = (await getCollection('area', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
-const stasiunEntries = workEntries.filter((entry) => entry.data.targetLocation.toLowerCase().includes('stasiun'));
-const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.toLowerCase().includes('terminal'));
+const stasiunEntries = areaEntries.filter((entry) => entry.data.targetLocation.toLowerCase().includes('stasiun'));
+const terminalEntries = areaEntries.filter((entry) => entry.data.targetLocation.toLowerCase().includes('terminal'));
 ---
 
 <header class="site-header sticky top-0 z-40 h-(--header-h) border-b border-transparent bg-canvas">
@@ -64,14 +64,14 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 </ul>
               </div>
             </li>
-          ) : link.href === '/work/' ? (
+          ) : link.href === '/area/' ? (
             <li class="static" data-dropdown-root>
               <button
                 type="button"
                 class="nav-link gap-1.5"
                 aria-expanded="false"
                 aria-controls="area-mega-menu"
-                aria-current={current('/work/')}
+                aria-current={current('/area/')}
                 data-dropdown-trigger
               >
                 <span>{link.label}</span>
@@ -81,7 +81,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
               <div
                 id="area-mega-menu"
                 role="region"
-                aria-label="Menu Area Stasiun dan Terminal Madiun"
+                aria-label="Menu Area Layanan Madiun"
                 hidden
                 class="mega-panel absolute top-full z-50 mt-2 rounded-panel border border-line bg-surface p-4 shadow-card"
                 data-dropdown-panel
@@ -97,13 +97,13 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                         return (
                           <li>
                             <a
-                              href={`/work/${entry.id}/`}
+                              href={`/area/${entry.id}/`}
                               class="flex items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-sm transition-colors hover:bg-sunken"
                             >
                               <span class="font-medium text-ink">
-                                {isMotor ? 'Sewa Motor' : 'Sewa Mobil'}
+                                {isMotor ? 'Sewa Motor' : 'Rental Mobil'}
                               </span>
-                              <span class="text-xs text-muted">{isMotor ? 'Mulai 75K' : 'Driver / Lepas'}</span>
+                              <span class="text-xs text-muted">{isMotor ? 'Mulai 75K' : 'Lepas / Supir'}</span>
                             </a>
                           </li>
                         );
@@ -113,7 +113,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
 
                   <div>
                     <p class="px-2.5 text-[0.7rem] font-semibold tracking-wider text-muted uppercase">
-                      Terminal Purboyo
+                      Terminal Purbaya
                     </p>
                     <ul class="mt-1.5 grid gap-0.5">
                       {terminalEntries.map((entry) => {
@@ -121,7 +121,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                         return (
                           <li>
                             <a
-                              href={`/work/${entry.id}/`}
+                              href={`/area/${entry.id}/`}
                               class="flex items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-sm transition-colors hover:bg-sunken"
                             >
                               <span class="font-medium text-ink">
@@ -137,9 +137,9 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 </div>
 
                 <div class="mt-3 flex items-center justify-between border-t border-line px-2.5 pt-3 text-xs">
-                  <span class="text-muted">Kami antar sampai lokasi</span>
-                  <a href="/work/" class="inline-flex items-center gap-1 font-semibold text-ink hover:text-accent-ink">
-                    Semua panduan
+                  <span class="text-muted">Kota &amp; Kab. Madiun</span>
+                  <a href="/area/" class="inline-flex items-center gap-1 font-semibold text-ink hover:text-accent-ink">
+                    Semua area layanan
                     <Icon name="arrow-right" class="size-3.5" />
                   </a>
                 </div>
@@ -223,7 +223,7 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                 </div>
               </details>
             </li>
-          ) : link.href === '/work/' ? (
+          ) : link.href === '/area/' ? (
             <li class="border-b border-line">
               <details class="mobile-sub-group">
                 <summary class="mobile-link cursor-pointer list-none justify-between border-b-0">
@@ -231,12 +231,12 @@ const terminalEntries = workEntries.filter((entry) => entry.data.targetLocation.
                   <Icon name="chevron-down" class="mobile-sub-chevron size-5 text-muted" />
                 </summary>
                 <div class="grid gap-1.5 pb-4 pl-2">
-                  <a href="/work/" class="rounded-lg px-3 py-2 text-sm font-semibold text-accent-ink hover:bg-sunken">
-                    Semua Panduan Area &rarr;
+                  <a href="/area/" class="rounded-lg px-3 py-2 text-sm font-semibold text-accent-ink hover:bg-sunken">
+                    Semua Area Madiun &rarr;
                   </a>
-                  {workEntries.map((entry) => (
+                  {areaEntries.map((entry) => (
                     <a
-                      href={`/work/${entry.id}/`}
+                      href={`/area/${entry.id}/`}
                       class="rounded-lg px-3 py-2 text-sm text-body hover:bg-sunken hover:text-ink"
                     >
                       {entry.data.title}

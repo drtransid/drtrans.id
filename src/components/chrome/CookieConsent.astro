@@ -5,7 +5,7 @@ const categories = [
   {
     name: 'analytics',
     title: 'Analitik',
-    text: 'Membantu kami mengetahui halaman armada, Stasiun Madiun, dan Terminal Purboyo mana yang paling sering diakses pengunjung.',
+    text: 'Membantu kami mengetahui halaman armada dan cakupan area Madiun mana yang paling sering diakses pengunjung.',
   },
   {
     name: 'marketing',
@@ -16,7 +16,7 @@ const categories = [
 ---
 
 <section
-  class="cookie-banner fixed inset-x-3 bottom-3 z-50 rounded-panel border border-line bg-surface p-5 shadow-(--shadow-card) sm:right-auto sm:bottom-5 sm:left-5 sm:max-w-sm"
+  class="cookie-banner fixed inset-x-3 bottom-3 z-40 rounded-panel border border-line bg-surface p-4 shadow-(--shadow-card) sm:right-auto sm:bottom-5 sm:left-5 sm:max-w-sm sm:p-5"
   aria-labelledby="cookie-banner-title"
   data-cookie-banner
   hidden
@@ -147,11 +147,16 @@ const categories = [
     window.dispatchEvent(new CustomEvent('drtrans:cookieConsentChanged', { detail: consent }));
   };
 
+  const syncBannerClearance = () => {
+    document.body.classList.toggle('has-cookie-banner', Boolean(banner && !banner.hidden));
+  };
+
   const openPreferences = () => {
     if (!dialog) return;
     const consent = read();
     toggles.forEach((toggle) => (toggle.checked = Boolean(consent?.[toggle.name as Category])));
     if (banner) banner.hidden = true;
+    syncBannerClearance();
     dialog.showModal();
   };
 
@@ -160,6 +165,7 @@ const categories = [
     if (!choice) return;
     write(choice === 'accept', choice === 'accept');
     banner.hidden = true;
+    syncBannerClearance();
   });
 
   dialog?.addEventListener('close', () => {
@@ -171,6 +177,7 @@ const categories = [
     }
     dialog.returnValue = '';
     if (banner) banner.hidden = Boolean(read());
+    syncBannerClearance();
   });
 
   document.addEventListener('click', (event) => {
@@ -190,7 +197,16 @@ const categories = [
   const stored = read();
   apply(stored);
   if (banner && !stored) banner.hidden = false;
+  syncBannerClearance();
 </script>
+
+<style is:global>
+  @media (max-width: 639px) {
+    body.has-cookie-banner {
+      padding-bottom: 12.5rem;
+    }
+  }
+</style>
 
 <style>
   .switch {

@@ -1,0 +1,26 @@
+---
+import SectionHead from '@/components/ui/SectionHead.astro';
+import { quickTerms } from '@/config/home';
+import { siteConfig } from '@/config/site';
+---
+
+<section id="syarat" class="shell mt-28 sm:mt-36" aria-labelledby="syarat-title">
+  <SectionHead id="syarat-title" eyebrow={quickTerms.eyebrow} title={quickTerms.title}>
+    <a class="link text-sm font-medium" href="/terms/">Baca syarat &amp; ketentuan lengkap</a>
+  </SectionHead>
+
+  <ol class="mt-10 grid gap-5 sm:grid-cols-3">
+    {quickTerms.items.map((item, index) => (
+      <li class="reveal flex flex-col justify-between rounded-card border border-line bg-surface p-6 sm:p-7">
+        <div>
+          <span class="font-serif text-2xl text-accent-ink italic">0{index + 1}</span>
+          <h3 class="mt-4 text-title">{item.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted">{item.text}</p>
+        </div>
+        <p class="mt-6 border-t border-line pt-4 text-xs text-muted">
+          WhatsApp resmi: <a class="link font-medium text-ink" href={siteConfig.business.whatsapp} target="_blank" rel="noopener">{siteConfig.business.phoneDisplay}</a>
+        </p>
+      </li>
+    ))}
+  </ol>
+</section>

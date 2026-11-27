@@ -84,6 +84,17 @@ const bookingHref = (name: string) =>
       <h3 class="text-title">Kendaraan Roda Empat (Mobil)</h3>
       <p class="text-sm text-muted">Gratis GPS &amp; asuransi penuh &middot; Lepas kunci atau plus driver</p>
     </div>
+
+    <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+      {fleet.carPackages.map((pkg) => (
+        <li class="rounded-panel border border-line bg-sunken p-4">
+          <p class="text-xs font-medium text-muted">{pkg.label}</p>
+          <p class="mt-1 text-base font-semibold text-ink">{pkg.rate}</p>
+          <p class="mt-1 text-xs text-muted">{pkg.note}</p>
+        </li>
+      ))}
+    </ul>
+
     <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {fleet.items.map((car) => (
         <li class="reveal">
@@ -92,7 +103,7 @@ const bookingHref = (name: string) =>
               <span class="grid size-12 place-items-center rounded-xl bg-sunken text-ink">
                 <Icon name="car" class="size-6" />
               </span>
-              <span class="chip">Mobil</span>
+              <span class="chip">{car.rate}</span>
             </div>
             <h4 class="mt-8 text-title">{car.name}</h4>
             <dl class="mt-5 grid grid-cols-3 gap-3 border-t border-line pt-5 text-sm">

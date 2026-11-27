@@ -1,13 +1,13 @@
-const CACHE_NAME = 'drtrans-pwa-v1';
+const CACHE_NAME = 'drtrans-pwa-v2';
 
 const PRECACHE_URLS = [
   '/',
   '/about/',
-  '/work/',
-  '/work/sewa-motor-stasiun-madiun/',
-  '/work/sewa-mobil-stasiun-madiun/',
-  '/work/sewa-motor-terminal-madiun/',
-  '/work/sewa-mobil-terminal-madiun/',
+  '/area/',
+  '/area/sewa-motor-stasiun-madiun/',
+  '/area/rental-mobil-stasiun-madiun/',
+  '/area/sewa-motor-terminal-purbaya-madiun/',
+  '/area/rental-mobil-terminal-purbaya-madiun/',
   '/site.webmanifest',
   '/assets/aistudio/favicon_1c1a2659.svg',
   '/assets/aistudio/apple-touch-icon_f28537ea.png',

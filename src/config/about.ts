@@ -21,7 +21,7 @@ export const about = {
       eyebrow: 'Profil perusahaan',
       title: 'Berangkat dari kebutuhan transportasi Madiun yang transparan dan siap pakai',
       paragraphs: [
-        'DRTRANS.ID merupakan layanan rental kendaraan resmi yang dikelola oleh PT. AZZAHRA JAYA TRANSPORTATION di Madiun, Jawa Timur. Kami melayani penumpang kereta api di Stasiun Madiun, pengguna bus di Terminal Purboyo Madiun, wisatawan luar kota, hingga kebutuhan operasional perusahaan dan instansi.',
+        'DRTRANS.ID merupakan layanan rental kendaraan resmi yang dikelola oleh PT. AZZAHRA JAYA TRANSPORTATION di Madiun, Jawa Timur. Kami melayani warga Madiun, tamu hotel & perkantoran, penumpang kereta api di Stasiun Madiun, pengguna bus di Terminal Purbaya (Purboyo) Madiun, hingga kebutuhan operasional perusahaan dan instansi.',
         'Seluruh unit motor dan mobil yang beroperasi adalah armada milik kami sendiri. Sebelum diserahkan kepada penyewa, setiap kendaraan melewati pemeriksaan mekanik rutin di bengkel internal kami, dicuci bersih luar dalam, serta dilengkapi surat kendaraan yang lengkap dan sah.',
       ],
     },
@@ -29,8 +29,8 @@ export const about = {
       eyebrow: 'Standar layanan',
       title: 'Cepat di titik kedatangan, fleksibel untuk dalam maupun luar kota',
       paragraphs: [
-        'Kami memahami penumpang yang baru turun di Stasiun Madiun atau Terminal Purboyo membutuhkan kendaraan tanpa proses berbelit. Tim pengantaran kami siap mengantar motor atau mobil langsung ke titik temu secara gratis untuk wilayah Kota dan Kabupaten Madiun.',
-        'Anda dapat memilih sewa motor matic mulai Rp75.000 per hari untuk mobilitas ringkas, sewa mobil lepas kunci atau dengan driver berpengalaman, hingga charter Elf New Hiace Commuter untuk perjalanan wisata rombongan ke Yogyakarta, Bandung, Bali, maupun Lombok.',
+        'Kami memahami penumpang yang baru turun di Stasiun Madiun atau Terminal Purbaya Madiun maupun tamu yang menunggu di hotel membutuhkan kendaraan tanpa proses berbelit. Tim pengantaran kami siap mengantar motor atau mobil langsung ke titik temu di wilayah Kota dan Kabupaten Madiun.',
+        'Anda dapat memilih sewa motor matic mulai Rp75.000 per hari untuk mobilitas ringkas, rental mobil lepas kunci atau dengan driver berpengalaman mulai Rp[...]/hari, hingga charter Elf New Hiace Commuter untuk perjalanan wisata rombongan ke Yogyakarta, Bandung, Bali, maupun Lombok.',
       ],
     },
   ],
@@ -50,8 +50,8 @@ export const about = {
       },
       {
         number: '03',
-        title: 'Harga jujur tanpa biaya tersembunyi',
-        text: 'Gratis pengantaran untuk wilayah Kota dan Kabupaten Madiun, dengan pembayaran resmi hanya melalui rekening BCA atau BRI.',
+        title: 'Harga jujur & transaksi resmi',
+        text: 'Rincian tarif disampaikan jelas di awal, dengan pembayaran resmi hanya melalui rekening BCA atau BRI perusahaan.',
       },
       {
         number: '04',
@@ -62,12 +62,12 @@ export const about = {
   },
   coverage: {
     eyebrow: 'Cakupan antar jemput',
-    title: 'Titik layanan utama di Madiun',
-    text: 'Kami menjangkau pusat kedatangan dan area strategis di Madiun Raya. Lihat panduan rute khusus untuk Stasiun Madiun dan Terminal Purboyo.',
+    title: 'Titik layanan utama di Madiun Raya',
+    text: 'Kami menjangkau pusat kota, penginapan, hingga titik kedatangan utama di Madiun Raya. Lihat panduan cakupan area lengkap kami.',
     points: [
-      { label: 'Stasiun Besar Madiun', note: 'Antar langsung ke area parkir / pintu kedatangan kereta api' },
-      { label: 'Terminal Purboyo Madiun', note: 'Serah terima cepat untuk penumpang bus AKAP & AKDP' },
-      { label: 'Kota & Kabupaten Madiun', note: 'Gratis antar jemput ke hotel, rumah, atau kantor' },
+      { label: 'Stasiun Madiun', note: 'Antar langsung ke area penjemputan / pintu keluar Stasiun Madiun' },
+      { label: 'Terminal Purbaya (Purboyo)', note: 'Serah terima cepat untuk penumpang bus AKAP & AKDP' },
+      { label: 'Kota & Kabupaten Madiun', note: 'Pengantaran cepat ke hotel, penginapan, rumah, atau kantor' },
       { label: 'Korporat & Wisata Luar Kota', note: 'Dukungan driver berpengalaman ke seluruh Jawa & Bali' },
     ],
   },

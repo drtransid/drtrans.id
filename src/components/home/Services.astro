@@ -1,11 +1,22 @@
 ---
+import { getCollection } from 'astro:content';
 import Icon from '@/components/ui/Icon.astro';
 import SectionHead from '@/components/ui/SectionHead.astro';
 import { services } from '@/config/home';
+
+const areaEntries = (await getCollection('area', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <section id="layanan" class="shell mt-28 sm:mt-36" aria-labelledby="services-title">
-  <SectionHead id="services-title" eyebrow={services.eyebrow} title={services.title} />
+  <SectionHead id="services-title" eyebrow={services.eyebrow} title={services.title} text={services.areaIntro}>
+    <a class="btn btn-ghost btn-sm" href={services.areaCta.href}>
+      {services.areaCta.label}
+      <Icon name="arrow-right" class="icon-nudge size-4" />
+    </a>
+  </SectionHead>
+
   <ul class="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
     {services.items.map((item) => (
       <li class="reveal flex flex-col bg-surface p-7 sm:p-8">
@@ -17,4 +28,30 @@ import { services } from '@/config/home';
       </li>
     ))}
   </ul>
+
+  <div class="reveal mt-6 rounded-card border border-line bg-sunken p-6 sm:p-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-line pb-4">
+      <h3 class="text-title">Titik penjemputan populer di Madiun</h3>
+      <a class="link text-sm font-medium" href="/area/">Lihat cakupan area lengkap</a>
+    </div>
+    <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {areaEntries.map((entry) => (
+        <li>
+          <a
+            href={`/area/${entry.id}/`}
+            class="flex h-full flex-col justify-between rounded-panel border border-line bg-surface p-4 transition-colors hover:border-line-strong"
+          >
+            <div>
+              <span class="text-xs font-medium text-muted">{entry.data.targetLocation}</span>
+              <p class="mt-1 text-sm font-semibold text-ink">{entry.data.title}</p>
+            </div>
+            <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-accent-ink">
+              {entry.data.priceFrom}
+              <Icon name="arrow-up-right" class="size-3.5" />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </section>

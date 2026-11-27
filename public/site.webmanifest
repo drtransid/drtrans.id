@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "DRTRANS.ID – Sewa Motor & Mobil Madiun",
+  "name": "DRTRANS.ID – Rental Mobil & Sewa Motor Madiun",
   "short_name": "DRTRANS",
-  "description": "Rental motor mulai 75K, sewa mobil lepas kunci atau supir, dan Elf Hiace di Madiun. Gratis antar Stasiun & Terminal Madiun 24 jam.",
+  "description": "Rental mobil lepas kunci/supir & sewa motor matic mulai 75K di Madiun oleh PT. AZZAHRA JAYA TRANSPORTATION. Antar ke lokasi Anda 24 jam.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
